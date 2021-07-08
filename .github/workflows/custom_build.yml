@@ -13,7 +13,7 @@ env:
 jobs:
   export:
     name: "Custom Build"
-    runs-on: debian:buster
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
