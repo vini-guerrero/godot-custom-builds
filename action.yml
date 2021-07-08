@@ -1,0 +1,9 @@
+name: "Godot Custom Builds"
+description: "Godot Engine Automation Pipeline For Custom Builds"
+author: Vinicius Guerrero
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: upload
+  color: white

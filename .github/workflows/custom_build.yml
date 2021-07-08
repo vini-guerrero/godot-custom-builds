@@ -17,3 +17,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Build
+        uses: vini-guerrero/godot-custom-builds@main
