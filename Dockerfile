@@ -9,9 +9,9 @@ RUN wget https://github.com/godotengine/godot/archive/${GODOT_VERSION}-stable.zi
 
 RUN unzip ${GODOT_VERSION}-stable.zip
 
-WORKDIR "/godot-${GODOT_VERSION}-stable/modules"
-RUN git clone https://github.com/Zylann/godot_voxel.git
-RUN mv godot_voxel voxel 
+# WORKDIR "/godot-${GODOT_VERSION}-stable/modules"
+# RUN git clone https://github.com/Zylann/godot_voxel.git
+# RUN mv godot_voxel voxel 
 
 RUN apt-get -y install build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev \
     libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm 
