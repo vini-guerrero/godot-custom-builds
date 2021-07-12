@@ -47,8 +47,18 @@
 
 name: "Godot Environment"
 description: "Prepare Godot Engine compile environment"
+inputs:
+  godot_version:
+    description: "Godot Version"
+    required: true
+    default: "3.x"
+outputs:
+  godot_version:
+    description: "Godot Version"
+    value: ${{ steps.environment-setup.outputs.godot-version }}
 runs:
   using: "composite"
   steps:
-    run: ls && pwd
-    shell: bash
+    - id: environment-setup
+      run: echo "::set-output name=godot-version::$(echo ${{ inputs.godot_version }})"
+      shell: bash
