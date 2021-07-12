@@ -13,7 +13,7 @@ RUN unzip ${GODOT_VERSION}-stable.zip
 # RUN git clone https://github.com/Zylann/godot_voxel.git
 # RUN mv godot_voxel voxel 
 
-RUN apt-get -y install sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+RUN apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev \
     libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
 
 WORKDIR "/godot-${GODOT_VERSION}-stable/"
