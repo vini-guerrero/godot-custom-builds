@@ -1,7 +1,5 @@
 name: Action_1
 
-on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
