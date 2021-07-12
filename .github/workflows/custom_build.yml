@@ -1,6 +1,10 @@
 name: "Custom Build"
 on: [workflow_dispatch]
 
+env:
+  GODOT_BASE_BRANCH: 3.x
+  SCONS_CACHE_LIMIT: 4096
+
 jobs:
   linux-editor:
     runs-on: "ubuntu-20.04"
