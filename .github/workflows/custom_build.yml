@@ -1,8 +1,15 @@
 name: "Custom Build"
-on: [workflow_dispatch]
+
+on:
+  workflow_dispatch:
+    inputs:
+      godot_version:
+        description: "Godot Version"
+        required: false
+        default: "3.x"
 
 env:
-  GODOT_BASE_BRANCH: 3.x
+  GODOT_BASE_BRANCH: ${{ github.event.inputs.godot_version }}
   SCONS_CACHE_LIMIT: 4096
 
 jobs:
