@@ -1,16 +1,15 @@
-name:  🍎 macOS Build
+name: macOS Build
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: "Version"
+      godot_version:
+        description: "Godot Version"
         required: false
-        default: "Version"
+        default: "3.x"
 
 # Global Cache Settings
 env:
-  VERSION: ${{ github.event.inputs.version }}
-  GODOT_BASE_BRANCH: 3.x
+  GODOT_BASE_BRANCH: ${{ github.event.inputs.godot_version }}
   SCONSFLAGS: platform=osx verbose=yes warnings=all werror=yes debug_symbols=no --jobs=2
   SCONS_CACHE_LIMIT: 4096
 
@@ -24,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 3.x
+          ref: ${{env.GODOT_BASE_BRANCH}}
 
       # Upload cache on completion and check it out now
       - name: Load .scons_cache directory
@@ -42,9 +41,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           # Semantic version range syntax or exact version of a Python version
-          python-version: '3.x'
+          python-version: "3.x"
           # Optional - x64 or x86 architecture, defaults to x64
-          architecture: 'x64'
+          architecture: "x64"
 
       # Setup scons, print python version and scons version info, so if anything is broken it won't run the build.
       - name: Configuring Python packages
