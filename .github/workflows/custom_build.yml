@@ -1,14 +1,5 @@
 name: "Custom Build"
-on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Version"
-        required: false
-        default: "Version"
-
-env:
-  VERSION: ${{ github.event.inputs.version }}
+on: [workflow_dispatch]
 
 jobs:
   export:
@@ -17,5 +8,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
-        uses: vini-guerrero/godot-custom-builds@main
+      - name: Environment
+        uses: vini-guerrero/godot-custom-builds@dev
