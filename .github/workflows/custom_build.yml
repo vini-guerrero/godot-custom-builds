@@ -18,7 +18,7 @@ jobs:
     name: Editor
 
     steps:
-      - uses: ./.github/workflows/environment
+      - uses: actions/godot-custom-builds@main
       - name: Compilation
         env:
           SCONS_CACHE: ${{github.workspace}}/.scons_cache/
