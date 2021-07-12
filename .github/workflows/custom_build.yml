@@ -1,16 +1,16 @@
-name: "Custom Build"
-
+name: Custom Build
 on:
   workflow_dispatch:
     inputs:
-      godot_version:
-        description: "Godot Version"
+      version:
+        description: "Version"
         required: false
-        default: "3.x"
+        default: "Version"
 
 env:
-  GODOT_BASE_BRANCH: ${{ github.event.inputs.godot_version }}
+  GODOT_BASE_BRANCH: 3.x
   SCONS_CACHE_LIMIT: 4096
+  VERSION: ${{ github.event.inputs.version }}
 
 jobs:
   linux-editor:
