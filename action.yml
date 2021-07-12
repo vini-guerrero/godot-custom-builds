@@ -59,10 +59,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/ExecuteSomething.sh
-      shell: bash
     - id: random-number-generator
       run: echo "::set-output name=filesNo::$(echo $RANDOM)"
-      shell: bash
-    - run: ${{ github.action_path }}/CopyFiles.sh
       shell: bash
