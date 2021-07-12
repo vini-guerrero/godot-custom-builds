@@ -1,10 +1,11 @@
 name: Action_2
 
 on:
-  workflow_run:
-    workflows: ["Action_1"]
-    types:
-      - completed
+  workflow_dispatch:
+    workflow_run:
+      workflows: ["Action_1"]
+      types:
+        - completed
 
 jobs:
   notify:
