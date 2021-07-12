@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN rm -f /etc/apt/sources.list.d/* && cp -f misc/ci/sources.list /etc/apt/sources.list && apt-get update
+RUN apt-get update
 
 RUN apt-get install -y --no-install-recommends sudo curl git python python-openssl wget zip unzip
 
