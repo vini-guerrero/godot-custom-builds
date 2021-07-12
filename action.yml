@@ -59,6 +59,16 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: godotengine/godot
+        ref: ${{ env.GODOT_BASE_BRANCH }}
+    - name: Make apt sources.list use the default Ubuntu repositories
+      shell: bash
+      run: |
+        sudo rm -f /etc/apt/sources.list.d/*
+        sudo cp -f misc/ci/sources.list /etc/apt/sources.list
+        sudo apt-get update
     - id: environment-setup
       run: echo "::set-output name=godot-version::$(echo ${{ inputs.godot_version }})"
       shell: bash
