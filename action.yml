@@ -8,12 +8,14 @@ runs:
         ref: ${{env.GODOT_BASE_BRANCH}}
 
     - name: Make apt sources.list use the default Ubuntu repositories
+      shell: bash
       run: |
         sudo rm -f /etc/apt/sources.list.d/*
         sudo cp -f misc/ci/sources.list /etc/apt/sources.list
         sudo apt-get update
 
     - name: Configure dependencies
+      shell: bash
       run: |
         sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
           libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
@@ -36,6 +38,7 @@ runs:
         architecture: "x64"
 
     - name: Configuring Python packages
+      shell: bash
       run: |
         python -c "import sys; print(sys.version)"
         python -m pip install scons
