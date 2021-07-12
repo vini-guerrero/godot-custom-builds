@@ -10,6 +10,7 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    - name: Configuring Python packages
-      run: |
-        ls && pwd
+    steps:
+      - name: Configuring Python packages
+        run: |
+          ls && pwd
