@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update
-RUN apt-get -y install git wget unzip mingw-w64 python pip
+RUN apt-get -y install git wget unzip mingw-w64 python
 
 ENV GODOT_VERSION=3.3.2
 
