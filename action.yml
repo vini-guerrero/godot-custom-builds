@@ -2,23 +2,21 @@ name: "Godot Custom Builds"
 description: "Godot Engine Automation Pipeline For Custom Builds"
 author: Vinicius Guerrero
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  godot-version:
+    description: "Godot Version"
     required: true
-    default: "World"
+    default: "3.x"
 outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+  godot-version:
+    description: "Godot Version"
+    value: ${{ steps.godot-environment.outputs.godot-version }}
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: echo Hello ${{ inputs.godot-version }}.
       shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+    - id: godot-environment
+      run: echo "::set-output name=godot-version::$(echo ${{ inputs.godot-version }})"
       shell: bash
-    - run: |
-        chmod +x ${{ github.action_path }}/environment.sh && 
-        ${{ github.action_path }}/environment.sh
+    - run: ${{ github.action_path }}/environment.sh
       shell: bash
