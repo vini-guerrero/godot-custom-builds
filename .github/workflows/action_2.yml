@@ -1,0 +1,13 @@
+name: Action_2
+
+on:
+  workflow_run:
+    workflows: ["Action_1"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
