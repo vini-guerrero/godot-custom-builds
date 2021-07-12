@@ -45,20 +45,10 @@
 #         python --version
 #         scons --version
 
-name: "File Copy"
-description: "Pretends to copy some files and return the number of files copied"
-inputs:
-  destinationFolder: # path
-    description: "The folder to copy the files to"
-    required: true
-    default: "~"
-outputs:
-  copied-files:
-    description: "Number of files copied"
-    value: ${{ steps.random-number-generator.outputs.filesNo }}
+name: "Godot Environment"
+description: "Prepare Godot Engine compile environment"
 runs:
   using: "composite"
   steps:
-    - id: random-number-generator
-      run: echo "::set-output name=filesNo::$(echo $RANDOM)"
-      shell: bash
+    run: ls && pwd
+    shell: bash
