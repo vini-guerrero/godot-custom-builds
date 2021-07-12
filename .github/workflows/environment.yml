@@ -1,11 +1,10 @@
 name: "Environment"
-env:
-  GODOT_BASE_BRANCH: 3.x
-  SCONS_CACHE_LIMIT: 4096
-
 runs:
   using: "composite"
   steps:
+    env:
+      GODOT_BASE_BRANCH: 3.x
+      SCONS_CACHE_LIMIT: 4096
     - uses: actions/checkout@v2
       with:
         repository: godotengine/godot
