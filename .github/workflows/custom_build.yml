@@ -8,9 +8,8 @@ on:
         default: "3.x"
 
 env:
-  GODOT_BASE_BRANCH: 3.x
+  GODOT_BASE_BRANCH: ${{ github.event.inputs.version }}
   SCONS_CACHE_LIMIT: 4096
-  VERSION: ${{ github.event.inputs.version }}
 
 jobs:
   linux-editor:
@@ -18,7 +17,9 @@ jobs:
     name: Editor
 
     steps:
-      - uses: vini-guerrero/godot-custom-builds@main
+      - uses: actions/checkout@v2
+      - id: environment
+        uses: vini-guerrero/godot-custom-builds@main
       - name: Compilation
         env:
           SCONS_CACHE: ${{github.workspace}}/.scons_cache/
