@@ -1,5 +1,7 @@
 name: "Environment"
 
+on: []
+
 env:
   GODOT_BASE_BRANCH: 3.x
   SCONS_CACHE_LIMIT: 4096
