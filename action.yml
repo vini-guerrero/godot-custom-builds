@@ -1,46 +1,68 @@
-name: "Environment"
+# name: "Environment"
+# runs:
+#   using: "composite"
+#   steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         repository: godotengine/godot
+#         ref: ${{env.GODOT_BASE_BRANCH}}
+
+#     - name: Make apt sources.list use the default Ubuntu repositories
+#       shell: bash
+#       run: |
+#         sudo rm -f /etc/apt/sources.list.d/*
+#         sudo cp -f misc/ci/sources.list /etc/apt/sources.list
+#         sudo apt-get update
+
+#     - name: Configure dependencies
+#       shell: bash
+#       run: |
+#         sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+#           libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
+
+#     - name: Load .scons_cache directory
+#       id: linux-editor-cache
+#       uses: actions/cache@v2
+#       with:
+#         path: ${{github.workspace}}/.scons_cache/
+#         key: ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+#         restore-keys: |
+#           ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+#           ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
+#           ${{github.job}}-${{env.GODOT_BASE_BRANCH}}
+
+#     - name: Set up Python 3.x
+#       uses: actions/setup-python@v2
+#       with:
+#         python-version: "3.x"
+#         architecture: "x64"
+
+#     - name: Configuring Python packages
+#       shell: bash
+#       run: |
+#         python -c "import sys; print(sys.version)"
+#         python -m pip install scons
+#         python --version
+#         scons --version
+
+name: "File Copy"
+description: "Pretends to copy some files and return the number of files copied"
+inputs:
+  destinationFolder: # path
+    description: "The folder to copy the files to"
+    required: true
+    default: "~"
+outputs:
+  copied-files:
+    description: "Number of files copied"
+    value: ${{ steps.random-number-generator.outputs.filesNo }}
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
-      with:
-        repository: godotengine/godot
-        ref: ${{env.GODOT_BASE_BRANCH}}
-
-    - name: Make apt sources.list use the default Ubuntu repositories
+    - run: ${{ github.action_path }}/ExecuteSomething.sh
       shell: bash
-      run: |
-        sudo rm -f /etc/apt/sources.list.d/*
-        sudo cp -f misc/ci/sources.list /etc/apt/sources.list
-        sudo apt-get update
-
-    - name: Configure dependencies
+    - id: random-number-generator
+      run: echo "::set-output name=filesNo::$(echo $RANDOM)"
       shell: bash
-      run: |
-        sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
-          libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
-
-    - name: Load .scons_cache directory
-      id: linux-editor-cache
-      uses: actions/cache@v2
-      with:
-        path: ${{github.workspace}}/.scons_cache/
-        key: ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-        restore-keys: |
-          ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-          ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
-          ${{github.job}}-${{env.GODOT_BASE_BRANCH}}
-
-    - name: Set up Python 3.x
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.x"
-        architecture: "x64"
-
-    - name: Configuring Python packages
+    - run: ${{ github.action_path }}/CopyFiles.sh
       shell: bash
-      run: |
-        python -c "import sys; print(sys.version)"
-        python -m pip install scons
-        python --version
-        scons --version
