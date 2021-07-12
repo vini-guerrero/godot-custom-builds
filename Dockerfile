@@ -19,7 +19,3 @@ RUN apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev \
 WORKDIR "/godot-${GODOT_VERSION}-stable/"
 
 RUN python -c "import sys; print(sys.version)" && python -m pip install scons && python --version && scons --version
-
-RUN scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
-
-RUN ls && pwd
