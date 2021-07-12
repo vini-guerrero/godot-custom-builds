@@ -10,5 +10,6 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+    - name: Configuring Python packages
+      run: |
+        ls && pwd
