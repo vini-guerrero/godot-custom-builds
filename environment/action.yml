@@ -16,6 +16,6 @@ runs:
         sudo pip3 install scons &&
         sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version &&
         sudo wget https://github.com/godotengine/godot/archive/refs/heads/${{ inputs.godot_version }}.zip && 
-        sudo unzip ${{ inputs.godot_version }}.zip &&
+        sudo unzip ${{ inputs.godot_version }}.zip -d godot && cd godot
         pwd && ls
       shell: bash
