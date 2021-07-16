@@ -16,9 +16,7 @@ FROM debian:buster
 
 RUN apt-get update
 
-COPY build.sh /usr/local/bin/build.sh
-
-RUN pwd && ls
+COPY build.sh build.sh
 
 ENTRYPOINT ["build.sh"]
 
