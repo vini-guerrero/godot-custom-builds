@@ -11,9 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: vini-guerrero/godot-custom-builds/editor@main
+      with:
+          godot_version: ${{ env.GODOT_VERSION }}
       - name: Configuring Python packages
         run: |
           python -c "import sys; print(sys.version)"
-          python -m pip install scons
           python --version
           scons --version
