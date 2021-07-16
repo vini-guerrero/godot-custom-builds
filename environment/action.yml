@@ -1,0 +1,11 @@
+name: "Environment Setup"
+description: "Godot Engine Automation Pipeline - Environment Setup"
+author: Vinicius Guerrero
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Hello World"
+      shell: bash
+branding:
+  icon: upload
+  color: white
