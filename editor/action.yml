@@ -13,8 +13,7 @@ runs:
         sudo wget https://github.com/godotengine/godot/archive/${{ inputs.godot_version }}-stable.zip &&
         sudo unzip ${{ inputs.godot_version }}-stable.zip &&
         sudo apt-get update &&
-        sudo apt-get install -y --no-install-recommends curl git python python3-pip python-openssl wget zip unzip mingw-w64 scons &&
+        sudo apt-get install -y --no-install-recommends curl git python python3-pip python-openssl wget zip unzip mingw-w64 &&
         sudo apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm &&
-        sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version &&
-        which sources.list && pwd && ls
+        sudo pip3 install scons && pwd && ls
       shell: bash
