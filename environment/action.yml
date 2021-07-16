@@ -4,11 +4,7 @@ author: Vinicius Guerrero
 runs:
   using: "composite"
   steps:
-    - name: Make apt sources.list use the default Ubuntu repositories
-      run: |
-        sudo rm -f /etc/apt/sources.list.d/*
-        sudo cp -f misc/ci/sources.list /etc/apt/sources.list
-        sudo apt-get update
+    - run: echo "Hello World"
       shell: bash
 branding:
   icon: upload
