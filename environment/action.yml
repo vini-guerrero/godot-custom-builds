@@ -8,7 +8,7 @@ inputs:
   custom_module:
     description: "Custom Module"
     required: true
-    default: "https://github.com/Zylann/godot_voxel.git"
+    default: ""
 runs:
   using: "composite"
   steps:
@@ -26,7 +26,9 @@ runs:
 
     - name: Custom Module
       run: |
-        sudo git clone ${{ inputs.custom_module }} /godot-${{ inputs.godot_branch }}/modules
+        if [ ${{ inputs.custom_module }} != ""]; then
+          sudo git clone ${{ inputs.custom_module }} /godot-${{ inputs.godot_branch }}/modules
+        fi
       shell: bash
 
     - name: Compile Engine
