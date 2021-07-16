@@ -15,9 +15,9 @@
 FROM debian:buster
 
 RUN apt-get update
-RUN apt-get -y install git wget unzip mingw-w64 scons
+# RUN apt-get -y install git wget unzip mingw-w64 scons
 
-RUN echo "Received Godot Version ${GODOT_VERSION}"
+RUN echo "Received Godot Version ${GODOT_VERSION} ${INPUT_GODOT_VERSION}"
 
 # RUN wget https://github.com/godotengine/godot/archive/${GODOT_VERSION}-stable.zip
 
