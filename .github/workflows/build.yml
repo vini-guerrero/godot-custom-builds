@@ -7,7 +7,7 @@ env:
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
 
 jobs:
-  Editor:
+  build-engine:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -27,3 +27,9 @@ jobs:
         with:
           godot_version: ${{ env.GODOT_BRANCH }}
           custom_module: https://github.com/Zylann/godot_voxel.git
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Godot Engine
+          path: bin/*
+          retention-days: 14
