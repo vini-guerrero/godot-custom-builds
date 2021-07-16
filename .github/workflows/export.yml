@@ -2,7 +2,7 @@ name: Export
 on: [workflow_dispatch]
 
 jobs:
-  action_1:
+  export-package:
     runs-on: ubuntu-latest
     steps:
       - name: Export Package
