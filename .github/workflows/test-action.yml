@@ -6,7 +6,7 @@ env:
   SCONS_CACHE_LIMIT: 4096
 
 jobs:
-  compile:
+  Editor:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
