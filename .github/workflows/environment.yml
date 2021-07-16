@@ -19,7 +19,7 @@ jobs:
       - name: Build Environment
         uses: vini-guerrero/godot-custom-builds/environment@main
         with:
-          build-args: GODOT_VERSION=3.3.2
+          GODOT_VERSION: "3.3.2"
 
       # - name: Load .scons_cache directory
       #   id: linux-editor-cache
