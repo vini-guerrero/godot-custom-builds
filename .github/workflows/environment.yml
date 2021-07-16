@@ -6,15 +6,28 @@ env:
   SCONS_CACHE_LIMIT: 4096
 
 jobs:
-  Export:
+  compile:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: vini-guerrero/godot-custom-builds/build@main
       # - uses: actions/upload-artifact@v2
       #   with:
+      #     name: ${{ github.compile }}
+      #     path: bin/*
+      #     retention-days: 14
+
+      # Linux
+      # - uses: actions/upload-artifact@v2
+      #   with:
       #     name: godot.x11.opt.tools.64
       #     path: bin/godot.x11.opt.tools.64
+
+      # Windows
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: godot.windows.opt.tools.64.exe
+      #     path: bin/godot.windows.opt.tools.64.exe
 
       # - name: Load .scons_cache directory
       #   id: linux-editor-cache
