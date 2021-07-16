@@ -18,6 +18,8 @@ RUN apt-get update
 
 COPY build.sh /usr/local/bin/build.sh
 
+RUN pwd && ls
+
 ENTRYPOINT ["build.sh"]
 
 # RUN apt-get -y install git wget unzip mingw-w64 scons
