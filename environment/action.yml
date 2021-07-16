@@ -10,7 +10,7 @@ runs:
   steps:
     - name: Prepare Compile Environment
       run: |
-        sudo wget https://github.com/godotengine/godot/archive/${{ inputs.godot_version }}.zip &&
+        sudo wget https://github.com/godotengine/godot/archive/refs/heads/${{ inputs.godot_version }}.zip &&
         sudo unzip ${{ inputs.godot_version }}-stable.zip &&
         sudo apt-get update &&
         sudo apt-get install -y --no-install-recommends curl git python python3-pip python-openssl wget zip unzip mingw-w64 &&
