@@ -1,5 +1,0 @@
-name: "Build"
-description: "Build Action"
-runs:
-  using: "docker"
-  image: "Dockerfile"

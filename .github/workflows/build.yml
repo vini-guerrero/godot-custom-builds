@@ -1,5 +1,6 @@
 name: Build Engine
 on: [push]
+# on: [workflow_dispatch]
 
 env:
   GODOT_BRANCH: 3.x
@@ -28,8 +29,20 @@ jobs:
           godot_version: ${{ env.GODOT_BRANCH }}
           custom_module: https://github.com/Zylann/godot_voxel.git
 
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: Godot Engine
+      #     path: bin/*
+      #     retention-days: 14
+
+      # Linux
       - uses: actions/upload-artifact@v2
         with:
-          name: Godot Engine
-          path: bin/*
-          retention-days: 14
+          name: Linux
+          path: bin/godot.x11.opt.tools.64
+
+      # Windows
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Windows
+          path: bin/godot.windows.opt.tools.64.exe
