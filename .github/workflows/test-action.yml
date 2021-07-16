@@ -10,11 +10,26 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - uses: vini-guerrero/godot-custom-builds/editor@main
+
+      - name: Load .scons_cache directory
+        id: Editor-Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{github.workspace}}/.scons_cache/
+          key: ${{github.job}}-${{env.GODOT_VERSION}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{env.GODOT_VERSION}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_VERSION}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_VERSION}}
+
+      - uses: vini-guerrero/godot-custom-builds/environment@main
         with:
           godot_version: ${{ env.GODOT_VERSION }}
-      - name: Configuring Python packages
+
+      - name: Compilation
+        env:
+          SCONS_CACHE: ${{github.workspace}}/.scons_cache/
         run: |
-          python -c "import sys; print(sys.version)"
-          python --version
-          scons --version
+          scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
+      # scons -j2 verbose=yes warnings=all werror=yes platform=osx tools=yes tests=no target=release_debug production=yes
+      # scons -j2 verbose=yes warnings=all werror=yes platform=windows tools=yes tests=no target=release_debug production=yes
