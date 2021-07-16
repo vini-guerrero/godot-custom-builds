@@ -1,5 +1,11 @@
 name: "Environment"
 description: "Environment Action"
+inputs:
+  GODOT_VERSION:
+    description: "Godot Version"
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
+  args:
+    - ${{ inputs.GODOT_VERSION }}

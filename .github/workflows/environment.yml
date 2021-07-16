@@ -16,7 +16,8 @@ jobs:
       #     repository: godotengine/godot
       #     ref: ${{env.GODOT_BASE_BRANCH}}
 
-      - uses: vini-guerrero/godot-custom-builds/environment@main
+      - name: Build Environment
+        uses: vini-guerrero/godot-custom-builds/environment@main
         with:
           build-args: GODOT_VERSION=3.3.2
 
