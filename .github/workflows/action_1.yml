@@ -1,7 +1,8 @@
 name: Action 1
-workflow_run:
-  workflows: ["Action 2"]
-  types: [completed]
+on:
+  workflow_run:
+    workflows: ["Action 2"]
+    types: [completed]
 
 jobs:
   on-success:
