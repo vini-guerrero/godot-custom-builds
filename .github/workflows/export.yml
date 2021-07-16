@@ -1,5 +1,5 @@
 name: Export
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   export-app:
@@ -8,6 +8,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Prepare Environment
-        uses: ./.github/actions/environment
+        uses: ../.github/actions/environment
       - name: Export App
         run: echo "Exporting App"
