@@ -2,8 +2,9 @@ name: Test Action
 on: [push]
 
 env:
-  GODOT_VERSION: 3.x
+  GODOT_BRANCH: 3.x
   SCONS_CACHE_LIMIT: 4096
+  SCONS_CACHE: ${{github.workspace}}/.scons_cache/
 
 jobs:
   Editor:
@@ -16,20 +17,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{github.workspace}}/.scons_cache/
-          key: ${{github.job}}-${{env.GODOT_VERSION}}-${{github.ref}}-${{github.sha}}
+          key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
           restore-keys: |
-            ${{github.job}}-${{env.GODOT_VERSION}}-${{github.ref}}-${{github.sha}}
-            ${{github.job}}-${{env.GODOT_VERSION}}-${{github.ref}}
-            ${{github.job}}-${{env.GODOT_VERSION}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}
 
       - uses: vini-guerrero/godot-custom-builds/environment@main
         with:
-          godot_version: ${{ env.GODOT_VERSION }}
-
-      - name: Compilation
-        env:
-          SCONS_CACHE: ${{github.workspace}}/.scons_cache/
-        run: |
-          sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
-      # scons -j2 verbose=yes warnings=all werror=yes platform=osx tools=yes tests=no target=release_debug production=yes
-      # scons -j2 verbose=yes warnings=all werror=yes platform=windows tools=yes tests=no target=release_debug production=yes
+          godot_version: ${{ env.GODOT_BRANCH }}
