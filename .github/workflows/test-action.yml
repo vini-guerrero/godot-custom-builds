@@ -2,7 +2,7 @@ name: Test Action
 on: [push]
 
 env:
-  GODOT_VERSION: 3.3.2
+  GODOT_VERSION: 3.x
   SCONS_CACHE_LIMIT: 4096
 
 jobs:
