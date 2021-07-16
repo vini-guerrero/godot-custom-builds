@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Environment
-        uses: vini-guerrero/godot-custom-builds/build@main
-      - name: Compile
-        run: |
-          ls && pwd
+      - uses: vini-guerrero/godot-custom-builds/build@main
+      - name: Artifacts
+        run: pwd && ls
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: godot.x11.opt.tools.64
@@ -36,8 +34,3 @@ jobs:
       #     SCONS_CACHE: ${{github.workspace}}/.scons_cache/
       #   run: |
       #     scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
-
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: godot.x11.opt.tools.64
-      #     path: bin/godot.x11.opt.tools.64
