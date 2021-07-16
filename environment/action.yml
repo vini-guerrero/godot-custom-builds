@@ -5,10 +5,6 @@ inputs:
     description: "Godot Version"
     required: true
     default: "3.x"
-# outputs:
-#   godot_path:
-#     description: "Source Path"
-#     value: ${{ steps.engine-source-path.outputs.engine-source-path }}
 runs:
   using: "composite"
   steps:
@@ -23,6 +19,3 @@ runs:
         sudo unzip ${{ inputs.godot_version }}.zip && sudo mv godot-${{ inputs.godot_version }}/* .
         pwd && ls
       shell: bash
-    #  - id: engine-source-path
-    #   run: echo "::set-output name=engine-source-path::$(echo pwd)"
-    #   shell: bash
