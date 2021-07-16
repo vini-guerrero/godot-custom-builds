@@ -2,8 +2,12 @@ name: Export
 on: [workflow_dispatch]
 
 jobs:
-  export-package:
+  export-app:
     runs-on: ubuntu-latest
     steps:
-      - name: Export Package
-        run: echo "Exporting Package"
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Prepare Environment
+        uses: ./.github/actions/environment
+      - name: Export App
+        run: echo "Exporting App"

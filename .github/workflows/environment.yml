@@ -1,5 +1,5 @@
 name: Environment
-on: [push]
+on: [pull_request]
 
 env:
   GODOT_BASE_BRANCH: 3.x
