@@ -20,7 +20,7 @@ runs:
         sudo pip3 install scons &&
         sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version &&
         sudo wget https://github.com/godotengine/godot/archive/refs/heads/${{ inputs.godot_version }}.zip && 
-        sudo unzip ${{ inputs.godot_version }}.zip -d .
+        sudo unzip -j ${{ inputs.godot_version }}.zip -d .
         pwd && ls
       shell: bash
     #  - id: engine-source-path
