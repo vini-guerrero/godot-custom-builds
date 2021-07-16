@@ -1,5 +1,4 @@
 name: Action 1
-on: [push]
 workflow_run:
   workflows: ["Action 2"]
   types: [completed]
