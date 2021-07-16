@@ -1,4 +1,4 @@
-name: Build Engine
+name: Environment
 on: [workflow_dispatch]
 
 env:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: vini-guerrero/godot-custom-builds/build@main
+      - uses: vini-guerrero/godot-custom-builds/environment@main
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: ${{ github.compile }}
