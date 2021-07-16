@@ -5,6 +5,10 @@ inputs:
     description: "Godot Version"
     required: true
     default: "3.x"
+  custom_module:
+    description: "Custom Module"
+    required: true
+    default: "https://github.com/Zylann/godot_voxel.git"
 runs:
   using: "composite"
   steps:
@@ -18,6 +22,11 @@ runs:
         sudo wget https://github.com/godotengine/godot/archive/refs/heads/${{ inputs.godot_branch }}.zip && 
         sudo unzip ${{ inputs.godot_branch }}.zip && sudo mv godot-${{ inputs.godot_branch }}/* .
         pwd && ls
+      shell: bash
+
+    - name: Custom Module
+      run: |
+        sudo git clone ${{ inputs.custom_module }} /godot-${{ inputs.godot_branch }}/modules
       shell: bash
 
     - name: Compile Engine
