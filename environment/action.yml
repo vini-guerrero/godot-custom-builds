@@ -1,5 +1,0 @@
-name: "Environment"
-description: "Environment Action"
-runs:
-  using: "docker"
-  image: "Dockerfile"

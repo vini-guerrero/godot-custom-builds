@@ -1,8 +1,7 @@
-name: Environment
+name: Build Engine
 on: [push]
 
 env:
-  GODOT_BASE_BRANCH: 3.x
   GODOT_VERSION: 3.3.2
   SCONS_CACHE_LIMIT: 4096
 
@@ -11,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      # - uses: actions/checkout@v2
+      - name: Environment
+        uses: vini-guerrero/godot-custom-builds/build@main
+      - name: Compile
+        run: |
+          ls && pwd
+      # - uses: actions/upload-artifact@v2
       #   with:
-      #     repository: godotengine/godot
-      #     ref: ${{env.GODOT_BASE_BRANCH}}
-
-      - name: Build Environment
-        uses: vini-guerrero/godot-custom-builds/environment@main
+      #     name: godot.x11.opt.tools.64
+      #     path: bin/godot.x11.opt.tools.64
 
       # - name: Load .scons_cache directory
       #   id: linux-editor-cache
