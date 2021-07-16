@@ -1,7 +1,7 @@
-name: Action 1
+name: Environment
 on:
   workflow_run:
-    workflows: ["Action 2"]
+    workflows: ["Export"]
     types: [completed]
 
 jobs:
@@ -9,4 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Prepare Environment
+        run: echo "Environment Ready"

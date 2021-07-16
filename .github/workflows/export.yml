@@ -1,8 +1,9 @@
-name: Action 2
+name: Export
 on: [workflow_dispatch]
 
 jobs:
   action_1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Export Package
+        run: echo "Exporting Package"
