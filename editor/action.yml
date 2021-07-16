@@ -1,0 +1,11 @@
+name: "Editor"
+description: "Editor Build"
+runs:
+  using: "composite"
+  steps:
+    - name: Make apt sources.list use the default Ubuntu repositories
+      run: |
+        sudo rm -f /etc/apt/sources.list.d/*
+        sudo cp -f misc/ci/sources.list /etc/apt/sources.list
+        sudo apt-get update
+      shell: bash

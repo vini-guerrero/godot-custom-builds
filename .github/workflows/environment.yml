@@ -1,5 +1,5 @@
 name: Build Engine
-on: [push]
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
@@ -11,10 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: vini-guerrero/godot-custom-builds/build@main
-      - run: |
-          scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes &&
-          scons -j2 verbose=yes warnings=all werror=yes platform=windows tools=yes tests=no target=release_debug &&
-          scons verbose=yes warnings=all werror=yes platform=osx tools=yes target=release_debug debug_symbols=no --jobs=2
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: ${{ github.compile }}
