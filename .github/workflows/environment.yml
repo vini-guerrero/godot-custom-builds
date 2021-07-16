@@ -3,6 +3,7 @@ on: [push]
 
 env:
   GODOT_BASE_BRANCH: 3.x
+  GODOT_VERSION: "3.3.2"
   SCONS_CACHE_LIMIT: 4096
 
 jobs:
@@ -18,9 +19,6 @@ jobs:
 
       - name: Build Environment
         uses: vini-guerrero/godot-custom-builds/environment@main
-        with:
-          GODOT_VERSION: "3.3.2"
-          args: GODOT_VERSION=3.3.2
 
       # - name: Load .scons_cache directory
       #   id: linux-editor-cache
