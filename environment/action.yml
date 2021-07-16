@@ -4,7 +4,12 @@ author: Vinicius Guerrero
 runs:
   using: "composite"
   steps:
-    - run: echo "Hello World"
+    - uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: 3.x
+    - name: Validate Environment
+      run: ls
       shell: bash
 branding:
   icon: upload
