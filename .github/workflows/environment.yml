@@ -11,31 +11,31 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/checkout@v2
-        with:
-          repository: godotengine/godot
-          ref: ${{env.GODOT_BASE_BRANCH}}
+      # - uses: actions/checkout@v2
+      #   with:
+      #     repository: godotengine/godot
+      #     ref: ${{env.GODOT_BASE_BRANCH}}
 
       - uses: vini-guerrero/godot-custom-builds/environment@main
 
-      - name: Load .scons_cache directory
-        id: linux-editor-cache
-        uses: actions/cache@v2
-        with:
-          path: ${{github.workspace}}/.scons_cache/
-          key: ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-          restore-keys: |
-            ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-            ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
-            ${{github.job}}-${{env.GODOT_BASE_BRANCH}}
+      # - name: Load .scons_cache directory
+      #   id: linux-editor-cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ${{github.workspace}}/.scons_cache/
+      #     key: ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+      #     restore-keys: |
+      #       ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+      #       ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
+      #       ${{github.job}}-${{env.GODOT_BASE_BRANCH}}
 
-      - name: Compilation
-        env:
-          SCONS_CACHE: ${{github.workspace}}/.scons_cache/
-        run: |
-          scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
+      # - name: Compilation
+      #   env:
+      #     SCONS_CACHE: ${{github.workspace}}/.scons_cache/
+      #   run: |
+      #     scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: godot.x11.opt.tools.64
-          path: bin/godot.x11.opt.tools.64
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: godot.x11.opt.tools.64
+      #     path: bin/godot.x11.opt.tools.64
