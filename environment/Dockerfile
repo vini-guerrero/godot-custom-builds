@@ -17,7 +17,9 @@ FROM debian:buster
 RUN apt-get update
 RUN apt-get -y install git wget unzip mingw-w64 scons
 
-ENV GODOT_VERSION=3.3.2
+ENV GODOT_VERSION=$INPUT_GODOT_VERSION
+
+RUN echo "Received Godot Version ${INPUT_GODOT_VERSION}"
 
 RUN wget https://github.com/godotengine/godot/archive/${GODOT_VERSION}-stable.zip
 
@@ -32,6 +34,6 @@ RUN apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev \
 
 WORKDIR "/godot-${GODOT_VERSION}-stable/"
 
-RUN scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
+# RUN scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
 
-RUN ls && pwd
+# RUN ls && pwd
