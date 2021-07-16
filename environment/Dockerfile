@@ -15,7 +15,7 @@
 FROM debian:buster
 
 RUN apt-get update
-RUN apt-get -y install git wget unzip mingw-w64
+RUN apt-get -y install git wget unzip mingw-w64 scons
 
 ENV GODOT_VERSION=3.3.2
 
