@@ -7,5 +7,5 @@ inputs:
 runs:
   using: "docker"
   image: "Dockerfile"
-  args:
+  build-args:
     - ${{ inputs.GODOT_VERSION }}
