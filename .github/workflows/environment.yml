@@ -1,0 +1,16 @@
+name: Build Environment
+on: [push]
+
+env:
+  GODOT_BRANCH: 3.x
+  SCONS_CACHE_LIMIT: 4096
+  SCONS_CACHE: ${{github.workspace}}/.scons_cache/
+
+jobs:
+  build-environment:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: vini-guerrero/godot-custom-builds/environment@main
+        with:
+          environment: Linux

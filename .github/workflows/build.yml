@@ -1,6 +1,6 @@
 name: Build Engine
-on: [push]
-# on: [workflow_dispatch]
+# on: [push]
+on: [workflow_dispatch]
 
 env:
   GODOT_BRANCH: 3.x
