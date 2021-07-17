@@ -13,11 +13,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04, windows-latest, macos-latest]
-        platform: [Linux, Windows, OSX]
     steps:
       - uses: actions/checkout@v2
       - uses: vini-guerrero/godot-custom-builds/environment@main
         with:
-          environment: ${{ matrix.platform }}
-        env:
-          os: ${{ matrix.os }}
+          environment: ${{ matrix.os }}
