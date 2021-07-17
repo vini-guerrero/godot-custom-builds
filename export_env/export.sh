@@ -32,8 +32,8 @@ sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -ke
 
 # Set Editor Settings For Android Export
 echo "\n ✔ Preparing Android Project Export Setup \n"  
-sed -i '/\[resource\]/a export\/android\/android_sdk_path = "'"${ANDROID_HOME}"'" ${TRES_PATH} \
-&& sed -i '/\[resource\]/a export\/android\/adb = "'"${ANDROID_HOME/platform-tools}"'"" ${TRES_PATH} \
+sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/android/sdk"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/adb = "/usr/local/lib/android/sdk/platform-tools"' ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/debug_keystore = "debug.keystore"' ${TRES_PATH} \
@@ -46,8 +46,8 @@ sudo cat ${TRES_PATH}
 cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls 
 
 # echo "\n ✔ Exporting Android Platform \n"
-# sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
-# zip -r Android.zip build/Android
+sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
+zip -r Android.zip build/Android
 
 echo "\n ✔ Exporting Linux Platform \n" 
 sudo godot --verbose --export "Linux" "build/Linux/game.x86_64"
