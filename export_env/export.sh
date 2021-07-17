@@ -4,13 +4,14 @@ set -e
 echo "\n\n ✔ Export Script Triggered Successfully. \n\n "
 
 # Install Export Dependencies
-sudo apt-get update && sudo apt-get install -y apksigner
+# sudo apt-get update
+sudo apt-get install -y apksigner
 
 # Environment Variables
 GODOT_RELEASE="${ROOT_PATH:="stable"}"
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
 WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
-TRES_PATH="/github/home/.config/godot/editor_settings-3.tres"
+TRES_PATH="~/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 
