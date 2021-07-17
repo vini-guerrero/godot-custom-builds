@@ -11,6 +11,6 @@ runs:
     - name: Prepare Environment
       run: |
         echo -e "\n Build Platform ${{ inputs.environment }} \n" &&
-        ls -l /usr/local/lib/android/ &&
+        echo $ANDROID_HOME
         sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 && pwd && ls -l
       shell: bash
