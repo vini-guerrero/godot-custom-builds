@@ -3,7 +3,7 @@ on: [push]
 # on: [workflow_dispatch]
 
 env:
-  GODOT_BRANCH: 3.x
+  GODOT_BRANCH: 3.3
   SCONS_CACHE_LIMIT: 4096
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
 
@@ -15,16 +15,29 @@ jobs:
         os: [ubuntu-20.04]
         # os: [ubuntu-20.04, windows-latest, macos-latest]
     steps:
+      # Checkout Current Repository
       - uses: actions/checkout@v2
+
+      # Checkout Godot Repository
+      - uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: ${{ env.GODOT_BRANCH }}
+
+      # Java Setup For Android Export
       - name: Set up Java 8
         uses: actions/setup-java@v1
         with:
           java-version: 8
+
+      # Python Setup For Godot Engine
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
           python-version: "3.x"
           architecture: "x64"
+
+      # Setup Godot Export Environment
       - name: Export Environment
         uses: vini-guerrero/godot-custom-builds/export_env@main
         with:

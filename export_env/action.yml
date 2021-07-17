@@ -8,11 +8,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Prepare Environment
+    - name: Export Environment
       run: |
         echo -e "\n Build Platform ${{ inputs.environment }} \n" &&
-        echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n" &&
-        echo -e "\n adb -> ${ANDROID_HOME}/platform-tools \n" &&
-        ls -l $ANDROID_HOME && ls -l $ANDROID_HOME/platform-tools &&
+        echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n adb -> ${ANDROID_HOME}/platform-tools \n" &&
         sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 && pwd && ls -l
       shell: bash
