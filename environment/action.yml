@@ -17,6 +17,5 @@ runs:
           sudo apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm &&
           sudo pip3 install scons &&
           sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version
-        elif [[ "${{ inputs.environment }}" == "OSX" ]]; then
         fi
       shell: bash
