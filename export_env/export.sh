@@ -45,7 +45,12 @@ sudo cat ${TRES_PATH}
 # Move To Export Path
 cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls 
 
-echo "\n ✔ Exporting Android Platform \n"
-sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
-zip -r Android.zip build/Android
+# echo "\n ✔ Exporting Android Platform \n"
+# sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
+# zip -r Android.zip build/Android
+
+echo "\n ✔ Exporting Linux Platform \n" 
+sudo godot --verbose --export "Linux" "build/Linux/game.x86_64"
+zip -r "Linux.zip" build/Linux
+
 pwd && ls -l
