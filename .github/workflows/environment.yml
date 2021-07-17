@@ -43,3 +43,9 @@ jobs:
         with:
           godot_version: ${{ env.GODOT_VERSION }}
           environment: ${{ matrix.os }}
+
+      # Upload Artifact
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Android
+          path: ./build/Android
