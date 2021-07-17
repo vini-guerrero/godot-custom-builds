@@ -27,11 +27,6 @@ echo "\n ✔ Godot Editor First Launch. \n "
 cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
-# Validate Editor Settings
-sudo cat ${TRES_PATH}
-# Move To Export Path
-cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
-
 # Generate Keystore
 sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 && pwd && ls -l
 
@@ -45,6 +40,10 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"'
 && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
 
+# Validate Editor Settings
+sudo cat ${TRES_PATH}
+# Move To Export Path
+cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls 
 
 echo "\n ✔ Exporting Android Platform \n"
 godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
