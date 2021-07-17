@@ -9,7 +9,8 @@ runs:
   using: "composite"
   steps:
     - name: Prepare Environment
-      if: ${{ inputs.environment == "Linux" }}
       run: |
-        pwd && ls && echo ${{ inputs.environment }}
+        if [ ${{ inputs.environment }} == 'Linux']; then
+          pwd && ls && echo ${{ inputs.environment }}
+        fi
       shell: bash
