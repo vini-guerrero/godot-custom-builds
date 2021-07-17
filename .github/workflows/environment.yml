@@ -15,18 +15,16 @@ jobs:
         os: [ubuntu-20.04, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
-
-      - name: Load Cached Android SDK
-        id: Export-Cache
-        uses: actions/cache@v2
+      - name: Set up Java 8
+        uses: actions/setup-java@v1
         with:
-          path: ${{github.workspace}}/root/android-sdk/
-          key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
-          restore-keys: |
-            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
-            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
-            ${{github.job}}-${{env.GODOT_BRANCH}}
-
-      - uses: vini-guerrero/godot-custom-builds/export_env@main
+          java-version: 8
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+          architecture: "x64"
+      - name: Export Environment
+        uses: vini-guerrero/godot-custom-builds/export_env@main
         with:
           environment: ${{ matrix.os }}
