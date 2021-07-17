@@ -15,8 +15,8 @@ TRES_PATH="/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 
-wget ${LINK_GODOT}
-wget ${LINK_TEMPLATES}
+wget -q ${LINK_GODOT}
+wget -q ${LINK_TEMPLATES}
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v $ROOT_PATH/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
@@ -28,7 +28,7 @@ cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Validate Editor Settings
-ls -l ${WORKSPACE_PATH} && cd ~/.config && ls
+ls -l /github/home && cd /github/home/.config && ls
 cat ${TRES_PATH}
 # Move To Export Path
 cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
