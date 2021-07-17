@@ -28,8 +28,7 @@ cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Validate Editor Settings
-sudo ls -lah ~/.config/godot
-sudo cat ${TRES_PATH}
+sudo cat ~/.config/godot/editor_settings-3.tres}
 # Move To Export Path
 cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
 
