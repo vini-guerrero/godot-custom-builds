@@ -1,6 +1,6 @@
 name: Build Environment
-# on: [push]
-on: [workflow_dispatch]
+on: [push]
+# on: [workflow_dispatch]
 
 env:
   GODOT_BRANCH: 3.x
@@ -15,6 +15,18 @@ jobs:
         os: [ubuntu-20.04, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
-      - uses: vini-guerrero/godot-custom-builds/environment@main
+
+      - name: Load Cached Android SDK
+        id: Export-Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{github.workspace}}/root/android-sdk/
+          key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}
+
+      - uses: vini-guerrero/godot-custom-builds/export_env@main
         with:
           environment: ${{ matrix.os }}
