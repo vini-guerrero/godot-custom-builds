@@ -27,6 +27,6 @@ jobs:
             ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
             ${{github.job}}-${{env.GODOT_BRANCH}}
 
-      - uses: vini-guerrero/godot-custom-builds/export_env@main
+      - uses: vini-guerrero/godot-custom-builds/export@main
         with:
           environment: ${{ matrix.os }}

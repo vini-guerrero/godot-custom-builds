@@ -1,0 +1,14 @@
+name: "Export Environment"
+description: "Export Environment"
+inputs:
+  environment:
+    description: "Godot Export Environment"
+    required: true
+    default: "ubuntu-20.04"
+runs:
+  using: "composite"
+  steps:
+    - name: Prepare Environment
+      run: |
+        echo -e "\n Build Platform ${{ inputs.environment }} \n" &&
+      shell: bash
