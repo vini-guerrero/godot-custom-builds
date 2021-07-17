@@ -8,7 +8,7 @@ env:
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
 
 jobs:
-  build-environment:
+  build:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
