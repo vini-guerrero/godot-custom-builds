@@ -11,7 +11,7 @@ sudo apt-get install -y apksigner
 GODOT_RELEASE="${ROOT_PATH:="stable"}"
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
 WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
-TRES_PATH="~/.config/godot/editor_settings-3.tres"
+TRES_PATH=".config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 
@@ -28,7 +28,7 @@ cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Validate Editor Settings
-cat ${TRES_PATH}
+cd / && cat ${TRES_PATH}
 # Move To Export Path
 cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
 
