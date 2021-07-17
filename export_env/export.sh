@@ -32,8 +32,8 @@ sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -ke
 
 # Set Editor Settings For Android Export
 echo "\n ✔ Preparing Android Project Export Setup \n"  
-sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' ${TRES_PATH} \
-&& sed -i '/\[resource\]/a export\/android\/adb = "/root/android-sdk/platform-tools/adb"' ${TRES_PATH} \
+sed -i '/\[resource\]/a export\/android\/android_sdk_path = "'"${ANDROID_HOME}"'" ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/adb = "'"${ANDROID_HOME/platform-tools}"'"" ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/debug_keystore = "debug.keystore"' ${TRES_PATH} \
