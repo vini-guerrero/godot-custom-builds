@@ -10,5 +10,6 @@ runs:
   steps:
     - name: Prepare Environment
       run: |
-        echo -e "\n Build Platform ${{ inputs.environment }} \n" && ls -l export_env
+        echo -e "\n Build Platform ${{ inputs.environment }} \n" && 
+        chmod +x export_env/install.sh && ./export_env/install.sh
       shell: bash
