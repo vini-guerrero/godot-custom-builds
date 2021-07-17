@@ -11,6 +11,10 @@ runs:
     - name: Prepare Environment
       run: |
         if [[ "${{ inputs.environment }}" == "Linux" ]]; then
-          pwd && ls && echo ${{ inputs.environment }}
+          sudo apt-get update &&
+          sudo apt-get install -y --no-install-recommends curl git python python3-pip python-openssl wget zip unzip mingw-w64 &&
+          sudo apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm &&
+          sudo pip3 install scons &&
+          sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version
         fi
       shell: bash
