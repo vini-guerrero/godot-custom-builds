@@ -5,7 +5,7 @@ echo "\n\n ✔ Export Script Triggered Successfully. \n\n "
 
 # Install Export Dependencies
 # sudo apt-get update
-sudo apt-get install -y apksigner locate
+sudo apt-get install -y apksigner
 
 # Environment Variables
 GODOT_RELEASE="${ROOT_PATH:="stable"}"
@@ -28,7 +28,7 @@ cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Validate Editor Settings
-locate –i editor_settings-3.tres 
+grep -r –i “editor_settings-3.tres” /home  
 cat ${TRES_PATH}
 # Move To Export Path
 cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
