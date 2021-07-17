@@ -10,5 +10,5 @@ runs:
   steps:
     - name: Prepare Environment
       run: |
-        echo -e "\n Build Platform ${{ inputs.environment }} \n" &&
+        echo -e "\n Build Platform ${{ inputs.environment }} \n"
       shell: bash
