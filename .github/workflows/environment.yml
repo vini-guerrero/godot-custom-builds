@@ -10,8 +10,11 @@ env:
 jobs:
   build-environment:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        platform: [Linux, OSX, Windows]
     steps:
       - uses: actions/checkout@v2
       - uses: vini-guerrero/godot-custom-builds/environment@main
         with:
-          environment: Linux
+          environment: ${{ matrix.platform }}
