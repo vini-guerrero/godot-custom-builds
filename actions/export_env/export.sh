@@ -35,21 +35,19 @@ echo "\n ✔ Godot Editor First Launch. \n "
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
-JARSIGNER_PATH=$(eval "which jarsigner")
-APK_PATH=$(eval "which apksigner")
-EXPORT_PLATFORM="${EXPORT_PLATFORM:=$1}"
-echo ${JARSIGNER_PATH} - ${APK_PATH}
-
 if [[ $EXPORT_PLATFORM == "Android" ]]
 then     
+    JARSIGNER_PATH=$(eval "which jarsigner")
+    APKSIGNER_PATH=$(eval "which apksigner")
+    echo ${JARSIGNER_PATH} - ${APKSIGNER_PATH}
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
     # Set Editor Settings For Android Export
     echo "\n ✔ Preparing Android Project Export Setup \n"  
     sudo sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/android/sdk"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/adb = "/usr/local/lib/android/sdk/platform-tools/adb"' ${TRES_PATH} \
-    && sudo sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${TRES_PATH} \
-    && sudo sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/jarsigner = "'"${JARSIGNER_PATH}"'"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/apksigner = "'"${APKSIGNER_PATH}"'"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_keystore = "/usr/local/lib/android/debug.keystore"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
