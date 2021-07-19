@@ -43,6 +43,17 @@ jobs:
       #   with:
       #     python-version: "3.x"
       #     architecture: "x64"
+      - name: Setup Android Dependencies
+        run: |
+          sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
+          wget "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
+          # curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
+          unzip -q commandlinetools-linux-*.zip
+          rm commandlinetools-linux-*.zip
+          mv cmdline-tools latest
+          mkdir -p -v /root/.android && echo "count=0" > /root/.android/repositories.cfg
+          yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
+          yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
 
       # Setup Godot Export Environment
       - name: Export Environment
