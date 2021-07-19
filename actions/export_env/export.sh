@@ -34,6 +34,7 @@ sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_
 
 echo -e "✔ Godot Editor First Launch." 
 sudo chmod +x /usr/local/
+sudo chmod +x ${EXPORT_PATH}
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
 
