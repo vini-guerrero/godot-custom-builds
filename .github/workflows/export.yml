@@ -36,6 +36,7 @@ jobs:
         run: |
           sudo chmod -R a+rwx ${ANDROID_HOME}/ndk && sudo chmod -R a+rwx ${ANDROID_HOME}
           mv /usr/local/lib/android/sdk/ndk-bundle /usr/local/lib/android/sdk/ndk/21.4.7075529
+          ls -R /usr/local/lib/android/
 
       # # Set Up Android NDK
       # - name: Setup Android NDK
