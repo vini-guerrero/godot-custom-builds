@@ -16,7 +16,7 @@ TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 
-sudo mkdir -p -v /.cache && sudo mkdir -p -v /.config/godot
+sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 echo -e "✔ Setup Godot Editor And Export Templates." 
@@ -60,8 +60,8 @@ echo -e "✔ Export Path."
 cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --export-debug "${EXPORT_PLATFORM}" "build/${EXPORT_PLATFORM}/game.debug.apk"
-zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
+sudo godot --verbose --export-debug "${EXPORT_PLATFORM}" "/build/${EXPORT_PLATFORM}/game.debug.apk"
+zip -r ${EXPORT_PLATFORM}.zip /build/${EXPORT_PLATFORM}
 
 echo -e "✔ Exported Builds"
 pwd && ls -l
