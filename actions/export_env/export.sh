@@ -70,7 +70,7 @@ then
 fi
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --debug --export-debug "${PLATFORM_EXPORT_NAME}" "build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
+sudo godot --verbose --export-debug "${PLATFORM_EXPORT_NAME}" "build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
 zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
 
 echo -e "✔ Exported Builds"
