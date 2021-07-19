@@ -59,8 +59,15 @@ sudo cat ${TRES_PATH}
 echo -e "✔ Export Path."
 cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
+if [[ "${EXPORT_PLATFORM}" == "Linux/X11" ]]
+then 
+    EXPORT_NAME="game.x86_64"
+elif [[ "${EXPORT_PLATFORM}" == "Android" ]]
+    EXPORT_NAME="game.debug.apk"
+fi
+
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --debug --export-debug "${EXPORT_PLATFORM}" "build/${EXPORT_PLATFORM}/game.debug.apk"
+sudo godot --verbose --debug --export-debug "${EXPORT_PLATFORM}" "build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
 zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
 
 echo -e "✔ Exported Builds"
