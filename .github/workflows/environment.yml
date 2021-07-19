@@ -45,7 +45,7 @@ jobs:
           environment: ${{ matrix.os }}
 
       # Upload Artifact
-      # - uses: actions/upload-artifact@v1
-      #   with:
-      #     name: Android
-      #     path: ./build/Android
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Android
+          path: ./build/Android
