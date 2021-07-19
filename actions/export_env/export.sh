@@ -35,9 +35,11 @@ echo "\n ✔ Godot Editor First Launch. \n "
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
+which jarsigner && which apksigner
+echo ${EXPORT_PLATFORM}
+
 if [[ $EXPORT_PLATFORM == "Android" ]]
-then 
-    which jarsigner && which apksigner
+then     
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
     # Set Editor Settings For Android Export
