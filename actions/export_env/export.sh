@@ -24,7 +24,7 @@ unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo
 unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 echo "\n ✔ Godot Editor First Launch. \n " 
-cd / && chmod +x /usr/local/bin/godot && godot -e -q
+pwd && ls -l && chmod +x /usr/local/bin/godot && /usr/local/bin/godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Generate Keystore
@@ -43,7 +43,7 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/andr
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
 echo "\n ✔ Export Path \n"
-pwd && ls -l && cd ${ROOT_PATH}/${EXPORT_PATH} && pwd && ls -l
+cd ${ROOT_PATH}/${EXPORT_PATH} && pwd && ls -l
 
 # echo "\n ✔ Exporting Android Platform \n"
 # sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
