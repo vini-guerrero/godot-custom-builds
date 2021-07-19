@@ -24,7 +24,7 @@ jobs:
             ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
             ${{github.job}}-${{env.GODOT_BRANCH}}
 
-      - uses: vini-guerrero/godot-custom-builds/build@main
+      - uses: vini-guerrero/godot-custom-builds/actions/build@main
         with:
           godot_version: ${{ env.GODOT_BRANCH }}
           custom_module: https://github.com/Zylann/godot_voxel.git
