@@ -29,6 +29,14 @@ jobs:
         with:
           java-version: 8
 
+      # Set Up Android SDK
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        
+      # Set Up Android NDK
+      - name: Setup Android NDK
+        uses: - uses: nttld/setup-ndk@v1
+
       # Python Setup For Godot Engine
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
