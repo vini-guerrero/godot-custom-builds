@@ -8,6 +8,7 @@ echo "\n\n ✔ Export Script Triggered Successfully. \n\n "
 sudo apt-get install -y -qq apksigner
 
 # Environment Variables
+GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
 ROOT_PATH="${ROOT_PATH:="/home"}"
 EXPORT_PATH="${EXPORT_PATH:="game"}"
@@ -20,11 +21,11 @@ wget -q ${LINK_TEMPLATES}
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v $ROOT_PATH/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
-unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot
+unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 ${GODOT_PATH}/godot
 unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 echo "\n ✔ Godot Editor First Launch. \n " 
-pwd && ls -l && chmod +x /usr/local/bin/godot && /usr/local/bin/godot -e -q
+chmod +x ${GODOT_PATH}/godot && ${GODOT_PATH}/godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Generate Keystore
@@ -43,7 +44,7 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/andr
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
 echo "\n ✔ Export Path \n"
-cd ${ROOT_PATH}/${EXPORT_PATH} && pwd && ls -l
+cd {EXPORT_PATH} && pwd && ls -l
 
 # echo "\n ✔ Exporting Android Platform \n"
 # sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
