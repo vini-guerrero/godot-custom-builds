@@ -41,6 +41,7 @@ echo -e "✔ Godot Editor Launched."
 
 if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
+    which ndk
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
     echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n✔ ApkSigner Path: ${APKSIGNER_PATH}"
