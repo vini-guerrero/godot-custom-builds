@@ -36,6 +36,7 @@ jobs:
           sudo mkdir -p /usr/local/lib/android/sdk/ndk
           sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
           sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
+          mv /usr/local/lib/android/sdk/ndk-bundle /usr/local/lib/android/sdk/ndk/21.4.7075529
       - name: NDK Cache
         id: ndk-cache
         uses: actions/cache@v2
