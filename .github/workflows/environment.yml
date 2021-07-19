@@ -9,11 +9,10 @@ env:
 
 jobs:
   Build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        os: [ubuntu-20.04]
-        # os: [ubuntu-20.04, windows-latest, macos-latest]
+        os: [Android]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
