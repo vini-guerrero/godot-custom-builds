@@ -15,30 +15,41 @@ TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 
-wget -q ${LINK_GODOT}
-wget -q ${LINK_TEMPLATES}
 sudo mkdir -p -v /.cache && sudo mkdir -p -v /.config/godot
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
-unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 ${GODOT_PATH}/godot
-unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+echo "\n ✔ Setup Godot Editor And Export Templates. \n " 
+
+# Engine
+wget -q ${LINK_GODOT}
+unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip 
+sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 ${GODOT_PATH}/godot
+
+# Templates
+wget -q ${LINK_TEMPLATES}
+unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz 
+sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+
 
 echo "\n ✔ Godot Editor First Launch. \n " 
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
-# Generate Keystore
-sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
-
-# Set Editor Settings For Android Export
-echo "\n ✔ Preparing Android Project Export Setup \n"  
-sudo sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/android/sdk"' ${TRES_PATH} \
-&& sudo sed -i '/\[resource\]/a export\/android\/adb = "/usr/local/lib/android/sdk/platform-tools"' ${TRES_PATH} \
-&& sudo sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${TRES_PATH} \
-&& sudo sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${TRES_PATH} \
-&& sudo sed -i '/\[resource\]/a export\/android\/debug_keystore = "/usr/local/lib/android/debug.keystore"' ${TRES_PATH} \
-&& sudo sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
-&& sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
+if [[ $EXPORT_PLATFORM == "Android" ]]
+then 
+    which jarsigner && which apksigner
+    # Generate Debug Keystore
+    sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
+    # Set Editor Settings For Android Export
+    echo "\n ✔ Preparing Android Project Export Setup \n"  
+    sudo sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/android/sdk"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/adb = "/usr/local/lib/android/sdk/platform-tools/adb"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/debug_keystore = "/usr/local/lib/android/debug.keystore"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
+    && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
+fi
 
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
@@ -46,8 +57,7 @@ echo "\n ✔ Export Path \n"
 cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
 echo "\n ✔ Exporting ${EXPORT_PLATFORM} Version \n"
-sudo godot --verbose --export-debug "Android" "build/${EXPORT_PLATFORM}/game.debug.apk"
-pwd && ls -l
+sudo godot --verbose --export-debug "${EXPORT_PLATFORM}" "build/${EXPORT_PLATFORM}/game.debug.apk"
 zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
 
 echo "\n ✔ Exported Builds \n"
