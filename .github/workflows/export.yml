@@ -32,7 +32,7 @@ jobs:
       #   uses: android-actions/setup-android@v2.0.6
 
       - name: Setup Android Dependencies
-        run: chmod+x android.sh && bash android.sh
+        run: chmod +x android.sh && bash android.sh
 
       # # Set Up Android NDK
       # - name: Setup Android NDK
