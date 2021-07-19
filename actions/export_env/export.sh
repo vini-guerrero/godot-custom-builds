@@ -16,7 +16,6 @@ TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 
-chmod +x /root
 sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
@@ -41,6 +40,8 @@ if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
+    sudo chmod +x JARSIGNER_PATH
+    sudo chmod +x APKSIGNER_PATH
     echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n ✔ ApkSigner Path: ${APKSIGNER_PATH}"
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
@@ -64,6 +65,14 @@ if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
 then 
     PLATFORM_EXPORT_NAME="Linux"
     EXPORT_NAME="game.x86_64"
+elif [[ "${EXPORT_PLATFORM}" == "Mac OSX" ]]
+then
+    PLATFORM_EXPORT_NAME="Mac OSX"
+    EXPORT_NAME="game.zip"
+elif [[ "${EXPORT_PLATFORM}" == "Windows Desktop" ]]
+then
+    PLATFORM_EXPORT_NAME="Windows Desktop"
+    EXPORT_NAME="game.exe"
 elif [[ "${EXPORT_PLATFORM}" == "Android" ]]
 then
     PLATFORM_EXPORT_NAME="Android"
