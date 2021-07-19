@@ -31,9 +31,10 @@ wget -q ${LINK_TEMPLATES}
 unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz 
 sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
-
+# Permissions
 echo -e "✔ Godot Editor First Launch." 
 sudo chmod +x /usr/local/
+sudo chmod +x ${ANDROID_HOME}
 sudo chmod +x ${EXPORT_PATH}
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
@@ -73,6 +74,10 @@ elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]
 then
     PLATFORM_EXPORT_NAME="Windows Desktop"
     EXPORT_NAME="game.exe"
+elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]
+then
+    PLATFORM_EXPORT_NAME="iOS"
+    EXPORT_NAME="game.debug.ipa"
 elif [[ "${EXPORT_PLATFORM}" == "Android" ]]
 then
     PLATFORM_EXPORT_NAME="Android"
