@@ -1,11 +1,9 @@
 name: Build Environment
-on: [push]
-# on: [workflow_dispatch]
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
   SCONS_CACHE_LIMIT: 4096
-  SCONS_CACHE: ${{github.workspace}}/.scons_cache/
 
 jobs:
   Export:
@@ -51,7 +49,7 @@ jobs:
 
       # Setup Godot Export Environment
       - name: Export Environment
-        uses: vini-guerrero/godot-custom-builds/actions/export_env@main
+        uses: vini-guerrero/godot-exporter/actions/export@dev
         with:
           godot_version: ${{ env.GODOT_VERSION }}
           platform: ${{ matrix.platform }}
