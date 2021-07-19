@@ -8,7 +8,7 @@ echo "\n\n ✔ Export Script Triggered Successfully. \n\n "
 sudo apt-get install -y -qq apksigner
 
 # Environment Variables
-GODOT_RELEASE="${ROOT_PATH:="stable"}"
+GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
 EXPORT_PATH="${EXPORT_PATH:="game"}"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
