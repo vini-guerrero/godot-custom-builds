@@ -7,7 +7,7 @@ env:
 
 jobs:
   Export:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         platform: [Android]
@@ -28,8 +28,8 @@ jobs:
       #     java-version: 8
 
       # Set Up Android SDK
-      # - name: Setup Android SDK
-      #   uses: android-actions/setup-android@v2
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
 
       # # Set Up Android NDK
       # - name: Setup Android NDK
@@ -43,17 +43,9 @@ jobs:
       #   with:
       #     python-version: "3.x"
       #     architecture: "x64"
+
       - name: Setup Android Dependencies
-        run: |
-          sudo apt-get install -y wget
-          sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd root/android-sdk-installer/cmdline-tools
-          sudo wget "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
-          sudo unzip -q commandlinetools-linux-*.zip
-          sudo rm commandlinetools-linux-*.zip
-          sudo mv cmdline-tools latest
-          sudo mkdir -p -v /root/.android && echo "count=0" > /root/.android/repositories.cfg
-          sudo yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
-          sudo yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
+        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install --sdk_root=${ANDROID_SDK_ROOT} "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
 
       # Setup Godot Export Environment
       - name: Export Environment
