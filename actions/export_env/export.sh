@@ -9,7 +9,7 @@ sudo apt-get install -y -qq apksigner
 
 # Environment Variables
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
-ROOT_PATH="${ROOT_PATH:="/github/home"}"
+ROOT_PATH="${ROOT_PATH:="/home"}"
 EXPORT_PATH="${EXPORT_PATH:="game"}"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
@@ -43,7 +43,7 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/andr
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
 echo "\n ✔ Export Path \n"
-cd ${ROOT_PATH}/${EXPORT_PATH} && pwd && ls -l
+pwd && ls -l && cd ${ROOT_PATH}/${EXPORT_PATH} && pwd && ls -l
 
 # echo "\n ✔ Exporting Android Platform \n"
 # sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
