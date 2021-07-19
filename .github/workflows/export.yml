@@ -31,9 +31,6 @@ jobs:
       # - name: Setup Android SDK
       #   uses: android-actions/setup-android@v2.0.6
 
-      - name: Setup Android Dependencies
-        run: chmod +x android.sh && bash android.sh
-
       - name: Prepare NDK Caching
         run: |
           sudo mkdir -p /usr/local/lib/android/sdk/ndk
