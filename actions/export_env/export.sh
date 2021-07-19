@@ -41,9 +41,9 @@ echo -e "✔ Godot Editor Launched."
 
 if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
-    which ndk
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
+    sdkmanager --sdk_root=/usr/local/lib/android/sdk "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
     echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n✔ ApkSigner Path: ${APKSIGNER_PATH}"
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
