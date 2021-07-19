@@ -1,5 +1,5 @@
 name: Export Game
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
@@ -22,10 +22,10 @@ jobs:
       #     ref: ${{ env.GODOT_VERSION }}
 
       # Java Setup For Android Export
-      - name: Set up Java 8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 8
+      # - name: Set up Java 8
+      #   uses: actions/setup-java@v1
+      #   with:
+      #     java-version: 8
 
       # Set Up Android SDK
       # - name: Setup Android SDK
