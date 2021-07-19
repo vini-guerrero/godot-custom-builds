@@ -16,5 +16,6 @@ runs:
       run: |
         echo -e "\n Build Platform ${{inputs.environment}} \n" &&
         echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n adb -> ${ANDROID_HOME}/platform-tools \n" &&        
+        EXPORT_PLATFORM="${{inputs.platform}}"
         chmod +x actions/export_env/export.sh && bash actions/export_env/export.sh
       shell: bash
