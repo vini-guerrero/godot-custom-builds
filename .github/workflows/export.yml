@@ -35,7 +35,7 @@ jobs:
         if: ${{ matrix.platform == 'Android' }}
         run: |
           sudo mkdir -p -v ~/.android
-          sudo echo "count=0" > ~/.android/repositories.cfg
+          echo "count=0" > ~/.android/repositories.cfg
           sudo yes | ~/android/tools/bin/sdkmanager --licenses
           sudo yes | ~/android/tools/bin/sdkmanager "tools"
           sudo yes | ~/android/tools/bin/sdkmanager "platform-tools"
