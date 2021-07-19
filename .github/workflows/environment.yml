@@ -36,6 +36,8 @@ jobs:
       # Set Up Android NDK
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r21e
 
       # Python Setup For Godot Engine
       - name: Set up Python 3.x
