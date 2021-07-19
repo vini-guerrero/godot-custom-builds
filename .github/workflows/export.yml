@@ -45,7 +45,7 @@ jobs:
       #     architecture: "x64"
       - name: Setup Android Dependencies
         run: |
-          sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
+          sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && sudo cd /root/android-sdk-installer/cmdline-tools
           sudo wget "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
           sudo unzip -q commandlinetools-linux-*.zip
           sudo rm commandlinetools-linux-*.zip
