@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        platform: [Android, Linux/X11]
+        platform: [Android, Linux]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
