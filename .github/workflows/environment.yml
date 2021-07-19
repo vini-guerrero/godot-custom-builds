@@ -30,8 +30,8 @@ jobs:
           java-version: 8
 
       # Set Up Android SDK
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+      # - name: Setup Android SDK/NDK
+      #   uses: android-actions/setup-android@v2
 
       # Set Up Android NDK
       - name: Setup Android NDK
