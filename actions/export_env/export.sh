@@ -10,6 +10,8 @@ sudo apt-get install -y -qq apksigner
 # Environment Variables
 GODOT_RELEASE="${ROOT_PATH:="stable"}"
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
+EXPORT_PATH="${ROOT_PATH:="game"}"
+WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
@@ -27,7 +29,7 @@ cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Generate Keystore
-sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 && pwd && ls -l
+sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
 
 # Set Editor Settings For Android Export
 echo "\n ✔ Preparing Android Project Export Setup \n"  
@@ -40,7 +42,9 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/andr
 && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
 
 # Validate Editor Settings
-sudo ls && cat ${TRES_PATH} && ls -l && pwd
+sudo ls && cat ${TRES_PATH} 
+cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
+ls -l && pwd
 
 # echo "\n ✔ Exporting Android Platform \n"
 # sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
