@@ -33,6 +33,7 @@ sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_
 
 
 echo -e "✔ Godot Editor First Launch." 
+sudo chmod +x /usr/local/
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
 
@@ -40,8 +41,6 @@ if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
-    sudo chmod +x JARSIGNER_PATH
-    sudo chmod +x APKSIGNER_PATH
     echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n ✔ ApkSigner Path: ${APKSIGNER_PATH}"
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
@@ -65,11 +64,11 @@ if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
 then 
     PLATFORM_EXPORT_NAME="Linux"
     EXPORT_NAME="game.x86_64"
-elif [[ "${EXPORT_PLATFORM}" == "Mac OSX" ]]
+elif [[ "${EXPORT_PLATFORM}" == "MacOS" ]]
 then
     PLATFORM_EXPORT_NAME="Mac OSX"
     EXPORT_NAME="game.zip"
-elif [[ "${EXPORT_PLATFORM}" == "Windows Desktop" ]]
+elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]
 then
     PLATFORM_EXPORT_NAME="Windows Desktop"
     EXPORT_NAME="game.exe"
