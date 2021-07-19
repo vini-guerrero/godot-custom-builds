@@ -40,7 +40,7 @@ if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
-    echo -e "Jarsigner Path: ${JARSIGNER_PATH} - ApkSigner Path: ${APKSIGNER_PATH}"
+    echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n ApkSigner Path: ${APKSIGNER_PATH}"
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
     # Set Editor Settings For Android Export
@@ -60,8 +60,8 @@ echo -e "✔ Export Path."
 cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --export-debug "${EXPORT_PLATFORM}" "/build/${EXPORT_PLATFORM}/game.debug.apk"
-zip -r ${EXPORT_PLATFORM}.zip /build/${EXPORT_PLATFORM}
+sudo godot --verbose --export-debug "${EXPORT_PLATFORM}" "build/${EXPORT_PLATFORM}/game.debug.apk"
+zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
 
 echo -e "✔ Exported Builds"
 pwd && ls -l
