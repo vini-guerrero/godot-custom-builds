@@ -7,8 +7,8 @@ echo -e "✔ Export Script Triggered Successfully."
 # sudo apt-get update
 sudo apt-get install -y -qq apksigner locales
 sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-dpkg-reconfigure --frontend=noninteractive locales
-update-locale LANG=en_US.UTF-8
+sudo dpkg-reconfigure --frontend=noninteractive locales
+sudo update-locale LANG=en_US.UTF-8
 LANG=en_US.UTF-8 
 
 # Environment Variables
