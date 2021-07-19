@@ -30,7 +30,6 @@ jobs:
       # Set Up Android SDK
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install --sdk_root=${ANDROID_SDK_ROOT} "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
 
       # # Set Up Android NDK
       # - name: Setup Android NDK
@@ -44,6 +43,9 @@ jobs:
       #   with:
       #     python-version: "3.x"
       #     architecture: "x64"
+
+      - name: Setup Android Dependencies
+        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install --sdk_root=${ANDROID_SDK_ROOT} "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
 
       # Setup Godot Export Environment
       - name: Export Environment
