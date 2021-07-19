@@ -28,11 +28,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
-      
-      Set Up Android SDK
+
+      # Set Up Android SDK
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-      
+
       - run: sdkmanager "ndk;21.4.7075529"
       - run: sdkmanager "cmake;3.10.2.4988404"
 
