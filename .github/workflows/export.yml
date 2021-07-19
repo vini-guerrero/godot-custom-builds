@@ -34,9 +34,14 @@ jobs:
       - name: Prepare SDK & NDK
         if: ${{ matrix.platform == 'Android' }}
         run: |
+          yes | /usr/local/lib/android/sdk/tools/bin/sdkmanager --licenses
+          yes | /usr/local/lib/android/sdk/tools/bin/sdkmanager "tools"
+          yes | /usr/local/lib/android/sdk/tools/bin/sdkmanager "platform-tools"
+          yes | /usr/local/lib/android/sdk/tools/bin/sdkmanager "platforms;android-30"
+          yes | /usr/local/lib/android/sdk/tools/bin/sdkmanager "build-tools;30.0.3"
           sudo chmod -R a+rwx ${ANDROID_HOME}/ndk && sudo chmod -R a+rwx ${ANDROID_HOME}
           mv /usr/local/lib/android/sdk/ndk-bundle /usr/local/lib/android/sdk/ndk/21.4.7075529
-          ls -R /usr/local/lib/android/
+          # ls -R /usr/local/lib/android/
 
       # # Set Up Android NDK
       # - name: Setup Android NDK
