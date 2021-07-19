@@ -47,4 +47,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}
-          path: ./game/build/${{ matrix.platform }}.zip
+          path: ./game/${{ matrix.platform }}.zip
