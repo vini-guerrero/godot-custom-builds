@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        os: [Android]
+        platform: [Android]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
         uses: vini-guerrero/godot-custom-builds/actions/export_env@main
         with:
           godot_version: ${{ env.GODOT_VERSION }}
-          environment: ${{ matrix.os }}
+          platform: ${{ matrix.platform }}
 
       # Upload Artifact
       - uses: actions/upload-artifact@v1

@@ -43,15 +43,11 @@ sudo sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
 echo "\n ✔ Export Path \n"
-cd ${EXPORT_PATH} && pwd && ls -l
+cd ${EXPORT_PATH} && mkdir -v -p "build/Android"
 
 echo "\n ✔ Exporting Android Platform \n"
 sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
 zip -r Android.zip build/Android
-
-echo "\n ✔ Exporting Linux Platform \n" 
-sudo godot --verbose --export "Linux" "build/Linux/game.x86_64"
-zip -r "Linux.zip" build/Linux
 
 echo "\n ✔ Exported Builds \n"
 pwd && ls -l
