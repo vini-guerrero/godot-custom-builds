@@ -1,4 +1,4 @@
-name: Build Environment
+name: Export Game
 on: [workflow_dispatch]
 
 env:
