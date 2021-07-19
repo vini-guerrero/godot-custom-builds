@@ -16,13 +16,9 @@ TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 
-# sudo mkdir -p -v /root/.local/share/godot/ .config/godot .cache
-sudo mkdir -p -v .cache
-sudo mkdir -p -v .godot
-sudo mkdir -p -v .config/godot
-sudo mkdir -p -v .local/share/godot
-sudo mkdir -p -v .config/godot/projects
-sudo mkdir -p -v .local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+chmod +x /root
+sudo mkdir -p -v /root/.local/share/godot/ .config .cache
+sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 echo -e "✔ Setup Godot Editor And Export Templates." 
 
@@ -34,7 +30,7 @@ sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 ${GODOT_PATH}
 # Templates
 wget -q ${LINK_TEMPLATES}
 unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz 
-sudo mv templates/* .local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 
 echo -e "✔ Godot Editor First Launch." 
