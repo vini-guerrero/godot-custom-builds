@@ -3,7 +3,7 @@ on: [push]
 # on: [workflow_dispatch]
 
 env:
-  GODOT_VERSION: 3.3.2
+  GODOT_VERSION: 3.2.2
   SCONS_CACHE_LIMIT: 4096
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
 
