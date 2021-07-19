@@ -34,6 +34,21 @@ jobs:
       - name: Setup Android Dependencies
         run: chmod +x android.sh && bash android.sh
 
+      - name: Prepare NDK Caching
+        run: |
+          sudo mkdir -p /usr/local/lib/android/sdk/ndk
+          sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
+          sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
+      - name: NDK Cache
+        id: ndk-cache
+        uses: actions/cache@v2
+        with:
+          path: /usr/local/lib/android/sdk/ndk
+          key: ndk-cache-21.4.7075529
+      - name: Install NDK
+        if: steps.ndk-cache.outputs.cache-hit != 'true'
+        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.4.7075529"
+
       # # Set Up Android NDK
       # - name: Setup Android NDK
       #   uses: nttld/setup-ndk@v1
