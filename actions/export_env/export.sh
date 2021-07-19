@@ -25,7 +25,7 @@ unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo
 unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* ${RUNNER_HOME}/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 echo "\n ✔ Godot Editor First Launch. \n " 
-chmod +x ${GODOT_PATH}/godot && ${GODOT_PATH}/godot -e -q
+sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo "\n ✔ Godot Editor Launched. \n "
 
 # Generate Keystore
