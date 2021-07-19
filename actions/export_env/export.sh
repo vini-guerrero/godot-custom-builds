@@ -40,7 +40,7 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/andr
 && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
 
 # Validate Editor Settings
-sudo ls && cat ${TRES_PATH} && cd $ROOT_PATH/game
+sudo ls && cat ${TRES_PATH} && pwd && ls
 
 # echo "\n ✔ Exporting Android Platform \n"
 sudo godot --verbose --export-debug "Android" "build/Android/game.debug.apk"
