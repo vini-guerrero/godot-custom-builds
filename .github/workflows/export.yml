@@ -2,7 +2,7 @@ name: Export Game
 on: [push, workflow_dispatch]
 
 env:
-  GODOT_VERSION: 3.0.6
+  GODOT_VERSION: 3.3.2
   SCONS_CACHE_LIMIT: 4096
 
 jobs:
@@ -32,8 +32,10 @@ jobs:
       #   uses: android-actions/setup-android@v2.0.6
 
       - name: Prepare NDK
-        # if: steps.ndk-cache.outputs.cache-hit != 'true'
-        run: mv /usr/local/lib/android/sdk/ndk-bundle /usr/local/lib/android/sdk/ndk/21.4.7075529
+        if: ${{ matrix.platform == 'Android' }}
+        run: |
+          sudo chmod -R a+rwx ${ANDROID_HOME}/ndk 
+          mv /usr/local/lib/android/sdk/ndk-bundle /usr/local/lib/android/sdk/ndk/21.4.7075529
 
       # # Set Up Android NDK
       # - name: Setup Android NDK
