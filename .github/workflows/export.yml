@@ -31,10 +31,17 @@ jobs:
       # - name: Setup Android SDK
       #   uses: android-actions/setup-android@v2.0.6
 
-      - name: Prepare NDK
+      - name: Prepare SDK & NDK
         if: ${{ matrix.platform == 'Android' }}
         run: |
-          sudo chmod -R a+rwx ${ANDROID_HOME}/ndk 
+          sudo mkdir -p -v ~/.android
+          sudo echo "count=0" > ~/.android/repositories.cfg
+          sudo yes | ~/android/tools/bin/sdkmanager --licenses
+          sudo yes | ~/android/tools/bin/sdkmanager "tools"
+          sudo yes | ~/android/tools/bin/sdkmanager "platform-tools"
+          sudo yes | ~/android/tools/bin/sdkmanager "platforms;android-28"
+          sudo yes | ~/android/tools/bin/sdkmanager "build-tools;28.0.3"
+          sudo chmod -R a+rwx ${ANDROID_HOME}/ndk && sudo chmod +x android/build/gradlew
           mv /usr/local/lib/android/sdk/ndk-bundle /usr/local/lib/android/sdk/ndk/21.4.7075529
 
       # # Set Up Android NDK
