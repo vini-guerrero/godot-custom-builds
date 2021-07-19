@@ -35,7 +35,7 @@ echo -e "\n ✔ Godot Editor First Launch. \n "
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "\n ✔ Godot Editor Launched. \n "
 
-if [[ $EXPORT_PLATFORM == "Android" ]]
+if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
