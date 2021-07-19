@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-echo "\n\n ✔ Export Script Triggered Successfully. \n\n "
+echo -e "\n\n ✔ Export Script Triggered Successfully. \n\n "
 
 # Install Export Dependencies
 # sudo apt-get update
@@ -18,7 +18,7 @@ LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/God
 sudo mkdir -p -v /.cache && sudo mkdir -p -v /.config/godot
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
-echo "\n ✔ Setup Godot Editor And Export Templates. \n " 
+echo -e "\n ✔ Setup Godot Editor And Export Templates. \n " 
 
 # Engine
 wget -q ${LINK_GODOT}
@@ -31,19 +31,19 @@ unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
 sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 
-echo "\n ✔ Godot Editor First Launch. \n " 
+echo -e "\n ✔ Godot Editor First Launch. \n " 
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
-echo "\n ✔ Godot Editor Launched. \n "
+echo -e "\n ✔ Godot Editor Launched. \n "
 
 if [[ $EXPORT_PLATFORM == "Android" ]]
 then     
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
-    echo ${JARSIGNER_PATH} - ${APKSIGNER_PATH}
+    echo -e "Jarsigner Path: ${JARSIGNER_PATH} - ApkSigner Path: ${APKSIGNER_PATH}"
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
     # Set Editor Settings For Android Export
-    echo "\n ✔ Preparing Android Project Export Setup \n"  
+    echo -e "\n ✔ Preparing Android Project Export Setup \n"  
     sudo sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/usr/local/lib/android/sdk"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/adb = "/usr/local/lib/android/sdk/platform-tools/adb"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/jarsigner = "'"${JARSIGNER_PATH}"'"' ${TRES_PATH} \
@@ -55,10 +55,10 @@ fi
 
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
-echo "\n ✔ Export Path \n"
+echo -e "\n ✔ Export Path \n"
 cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
-echo "\n ✔ Exporting ${EXPORT_PLATFORM} Version \n"
+echo -e "\n ✔ Exporting ${EXPORT_PLATFORM} Version \n"
 sudo godot --verbose --export-debug "${EXPORT_PLATFORM}" "build/${EXPORT_PLATFORM}/game.debug.apk"
 zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
 
