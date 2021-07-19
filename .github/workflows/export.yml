@@ -38,11 +38,11 @@ jobs:
       #     ndk-version: r21e
 
       # Python Setup For Godot Engine
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.x"
-          architecture: "x64"
+      # - name: Set up Python 3.x
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: "3.x"
+      #     architecture: "x64"
 
       # Setup Godot Export Environment
       - name: Export Environment
