@@ -28,6 +28,7 @@ jobs:
 
       # Setup Godot Export Environment
       - name: Export Environment
+        id: export
         uses: vini-guerrero/godot-exporter/actions/export@dev
         with:
           platform: ${{ matrix.platform }}
@@ -44,4 +45,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}
-          path: ./game/${{ matrix.platform }}.zip
+          path: ${{ steps.export.outputs.artifact-path }}
