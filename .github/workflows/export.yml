@@ -34,12 +34,12 @@ jobs:
           platform: ${{ matrix.platform }}
 
       # Publish Platforms
-      #- name: Publish Platforms
-      #  uses: vini-guerrero/godot-exporter/actions/publish@dev
-      #  with:
-      #    platform: "Itch"
-      #    channel: ${{ matrix.platform }}
-      #    project_path: "game"
+      - name: Publish Platforms
+        uses: vini-guerrero/godot-exporter/actions/publish@dev
+        with:
+          platform: "Itch"
+          channel: ${{ matrix.platform }}
+          project_path: ${{ steps.export.outputs.artifact-path }}
 
       # Upload Artifact
       - uses: actions/upload-artifact@v1
