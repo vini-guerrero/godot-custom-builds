@@ -3,7 +3,7 @@ on: [push, workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
-  EXPORT_PATH: game # Local To Repository Folder With Game
+  PROJECT_PATH: game # Local To Repository Folder With Game
 
 jobs:
   Export:
