@@ -3,6 +3,7 @@ on: [push, workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
+  GAME_NAME: test_game
   IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
   PROJECT_PATH: game # Local To Repository Folder With Game
   ITCH_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
