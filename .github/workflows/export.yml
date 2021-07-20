@@ -15,36 +15,16 @@ jobs:
       # Checkout Current Repository
       - uses: actions/checkout@v2
 
-      # Checkout Godot Repository
-      # - uses: actions/checkout@v2
-      #   with:
-      #     repository: godotengine/godot
-      #     ref: ${{ env.GODOT_VERSION }}
-
-      # Java Setup For Android Export
-      #  - name: Set up Java 8
-      #    uses: actions/setup-java@v1
-      #    with:
-      #     java-version: 8
-
-      # Set Up Android SDK
-      # - name: Setup Android SDK
-      #   uses: android-actions/setup-android@v2.0.6
-
-      
-      
-      # # Set Up Android NDK
-      # - name: Setup Android NDK
-      #   uses: nttld/setup-ndk@v1
-      #   with:
-      #     ndk-version: r21e
-
-      # Python Setup For Godot Engine
-      # - name: Set up Python 3.x
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: "3.x"
-      #     architecture: "x64"
+      - name: Load Engine Cache
+        id: Engine-Cache
+        uses: actions/cache@v2
+        with:
+          path: /usr/local/bin/godot
+          key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}
 
       # Setup Godot Export Environment
       - name: Export Environment
