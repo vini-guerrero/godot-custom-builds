@@ -28,7 +28,7 @@ jobs:
 
       # Setup Godot Export Environment
       - name: Export Environment
-        uses: vini-guerrero/godot-custom-builds/actions/export_env@dev
+        uses: vini-guerrero/godot-custom-builds/actions/export_env@main
         with:
           godot_version: ${{ env.GODOT_VERSION }}
           platform: ${{ matrix.platform }}
