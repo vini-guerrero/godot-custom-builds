@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [Android, Linux, MacOS, Windows]
+        platform: [Android]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
@@ -28,17 +28,17 @@ jobs:
 
       # Setup Godot Export Environment
       - name: Export Environment
-        uses: vini-guerrero/godot-exporter/actions/export@dev
+        uses: vini-guerrero/godot-custom-builds/actions/export_env@dev
         with:
           godot_version: ${{ env.GODOT_VERSION }}
           platform: ${{ matrix.platform }}
           export_path: "game"
 
-      # Publish Platforms 
+      # Publish Platforms
       #- name: Publish Platforms
       #  uses: vini-guerrero/godot-exporter/actions/publish@dev
       #  with:
-      #    platform: "Itch" 
+      #    platform: "Itch"
       #    channel: ${{ matrix.platform }}
       #    project_path: "game"
 
