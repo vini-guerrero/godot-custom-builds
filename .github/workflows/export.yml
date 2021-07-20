@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [Android, iOS, Linux, MacOS, Windows]
+        platform: [Android, Linux, MacOS, Windows]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
 
-      - name: Load Engine Cache
-        id: Engine-Cache
-        uses: actions/cache@v2
-        with:
-          path: /usr/local/bin/godot
-          key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
-          restore-keys: |
-            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
-            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
-            ${{github.job}}-${{env.GODOT_BRANCH}}
+      # - name: Load Engine Cache
+      #   id: Engine-Cache
+      #   uses: actions/cache@v2
+      #   with:
+      #    path: /usr/local/bin/godot
+      #     key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+      #     restore-keys: |
+      #      ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+      #      ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
+      #      ${{github.job}}-${{env.GODOT_BRANCH}}
 
       # Setup Godot Export Environment
       - name: Export Environment
