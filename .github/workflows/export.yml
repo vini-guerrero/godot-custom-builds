@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [iOS, Android, Linux, MacOS, Windows]
+        platform: [iOS, Android, Linux, MacOS, Windows, HTML5]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
