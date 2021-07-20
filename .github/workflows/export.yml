@@ -27,11 +27,11 @@ jobs:
       #      ${{github.job}}-${{env.GODOT_BRANCH}}
 
       # Setup Godot Export Environment
-      - name: Export Environment
-        id: export
-        uses: vini-guerrero/godot-exporter/actions/export@dev
-        with:
-          platform: ${{ matrix.platform }}
+      # - name: Export Environment
+      #   id: export
+      #   uses: vini-guerrero/godot-exporter/actions/export@dev
+      #   with:
+      #     platform: ${{ matrix.platform }}
 
       # Publish Platforms
       - name: Publish Platforms
