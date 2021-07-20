@@ -1,8 +1,9 @@
 name: Export Game
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
+  IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
   PROJECT_PATH: game # Local To Repository Folder With Game
   ITCH_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
   ITCH_GAME: godot-exporter
@@ -30,22 +31,35 @@ jobs:
       #      ${{github.job}}-${{env.GODOT_BRANCH}}
 
       # Setup Godot Export Environment
-      - name: Export Environment
-        id: export
-        uses: vini-guerrero/godot-exporter/actions/export@dev
-        with:
-          platform: ${{ matrix.platform }}
+      # - name: Export Environment
+      #   id: export
+      #   uses: vini-guerrero/godot-exporter/actions/export@dev
+      #   with:
+      #     platform: ${{ matrix.platform }}
 
       # Publish Platforms
-      - name: Publish Platforms
-        uses: vini-guerrero/godot-exporter/actions/publish@dev
+      # - name: Publish Platforms
+      #   uses: vini-guerrero/godot-exporter/actions/publish@dev
+      #   with:
+      #     platform: "Itch"
+      #     channel: ${{ matrix.platform }}
+      #     project_path: ${{ steps.export.outputs.artifact-path }}
+
+      # Prepare iOS Icons Platforms
+      - name: iOS Icons
+        id: icons
+        uses: vini-guerrero/godot-exporter/actions/ios@dev
         with:
-          platform: "Itch"
-          channel: ${{ matrix.platform }}
-          project_path: ${{ steps.export.outputs.artifact-path }}
+          project_path: game
 
       # Upload Artifact
+      # - uses: actions/upload-artifact@v1
+      #   with:
+      #     name: ${{ matrix.platform }}
+      #     path: ${{ steps.export.outputs.artifact-path }}
+
+      # Upload Icons
       - uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}
-          path: ${{ steps.export.outputs.artifact-path }}
+          path: ${{ steps.icons.outputs.icons }}
