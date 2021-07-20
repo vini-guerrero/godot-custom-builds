@@ -1,12 +1,12 @@
 name: Export Game
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
-  BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+  PROJECT_PATH: game # Local To Repository Folder With Game
+  ITCH_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
   ITCH_GAME: godot-exporter
   ITCH_USER: andrea-miele
-  PROJECT_PATH: game # Local To Repository Folder With Game
 
 jobs:
   Export:
