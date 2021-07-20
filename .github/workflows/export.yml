@@ -3,7 +3,7 @@ on: [push, workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
-  SCONS_CACHE_LIMIT: 4096
+  EXPORT_PATH: game # Local To Repository Folder With Game
 
 jobs:
   Export:
@@ -28,11 +28,9 @@ jobs:
 
       # Setup Godot Export Environment
       - name: Export Environment
-        uses: vini-guerrero/godot-custom-builds/actions/export_env@main
+        uses: vini-guerrero/godot-exporter/actions/export@dev
         with:
-          godot_version: ${{ env.GODOT_VERSION }}
           platform: ${{ matrix.platform }}
-          export_path: "game"
 
       # Publish Platforms
       #- name: Publish Platforms
