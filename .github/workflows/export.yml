@@ -61,5 +61,5 @@ jobs:
       # Upload Icons
       - uses: actions/upload-artifact@v1
         with:
-          name: ${{ matrix.platform }}
+          name: iOS Icons
           path: ${{ steps.icons.outputs.icons }}
