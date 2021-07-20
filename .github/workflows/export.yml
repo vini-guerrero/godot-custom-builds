@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [Android]
+        platform: [iOS]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
@@ -31,11 +31,11 @@ jobs:
       #      ${{github.job}}-${{env.GODOT_BRANCH}}
 
       # Setup Godot Export Environment
-      # - name: Export Environment
-      #   id: export
-      #   uses: vini-guerrero/godot-exporter/actions/export@dev
-      #   with:
-      #     platform: ${{ matrix.platform }}
+      - name: Export Environment
+        id: export
+        uses: vini-guerrero/godot-exporter/actions/export@dev
+        with:
+          platform: ${{ matrix.platform }}
 
       # Publish Platforms
       # - name: Publish Platforms
@@ -45,21 +45,21 @@ jobs:
       #     channel: ${{ matrix.platform }}
       #     project_path: ${{ steps.export.outputs.artifact-path }}
 
-      # Prepare iOS Icons Platforms
-      - name: iOS Icons
-        id: icons
-        uses: vini-guerrero/godot-exporter/actions/ios@dev
-        with:
-          project_path: game
-
       # Upload Artifact
-      # - uses: actions/upload-artifact@v1
-      #   with:
-      #     name: ${{ matrix.platform }}
-      #     path: ${{ steps.export.outputs.artifact-path }}
-
-      # Upload Icons
       - uses: actions/upload-artifact@v1
         with:
-          name: iOS Icons
-          path: ${{ steps.icons.outputs.icons }}
+          name: ${{ matrix.platform }}
+          path: ${{ steps.export.outputs.artifact-path }}
+
+      # Prepare iOS Icons Platforms
+      # - name: iOS Icons
+      #   id: icons
+      #   uses: vini-guerrero/godot-exporter/actions/ios@dev
+      #   with:
+      #     project_path: game
+
+      # Upload Icons
+      # - uses: actions/upload-artifact@v1
+      #   with:
+      #     name: iOS Icons
+      #     path: ${{ steps.icons.outputs.icons }}
