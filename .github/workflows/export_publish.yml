@@ -34,9 +34,11 @@ jobs:
           path: ${{ steps.export.outputs.artifact-path }}
 
   publish:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     needs: export
     steps:
+      - name: Get Exported Artifact
+        uses: actions/download-artifact@v2
       - name: Export Result
         shell: bash
         run: |
