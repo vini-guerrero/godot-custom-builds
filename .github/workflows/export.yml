@@ -1,5 +1,5 @@
 name: Export Game
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
