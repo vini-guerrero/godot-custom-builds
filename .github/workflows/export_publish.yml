@@ -1,5 +1,5 @@
 name: Export Publish
-on: [push]
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
@@ -12,7 +12,7 @@ env:
 
 jobs:
   export_publish:
-    name: Export Project
+    name: Export
     runs-on: ubuntu-latest
     strategy:
       matrix:
