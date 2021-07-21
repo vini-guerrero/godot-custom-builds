@@ -13,6 +13,8 @@ env:
 jobs:
   export:
     runs-on: ubuntu-latest
+    outputs:
+      file: ${{ steps.export.outputs.file }}
     strategy:
       matrix:
         platform: [Linux]
@@ -33,12 +35,17 @@ jobs:
           name: ${{ matrix.platform }}
           path: ${{ steps.export.outputs.artifact-path }}
 
+      # Set Matrix Output
+      - id: export
+        run: echo "::set-output name=file::${{ steps.export.outputs.artifact-path }}"
+
   publish:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     needs: export
     steps:
       - name: Get Exported Artifact
-        uses: actions/download-artifact@v2
+        shell: bash
+        run: echo '${{ needs.export.outputs.file }}'
       - name: Export Result
         shell: bash
         run: |
