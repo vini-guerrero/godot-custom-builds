@@ -34,7 +34,13 @@ jobs:
         with:
           platform: "Itch"
           channel: ${{ matrix.platform }}
-          project_path: ${{ steps.export.outputs.exported-project }}
+          project_path: ${{ steps.export.outputs.artifact-path }}
+
+      # Upload Settings Used
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ steps.export.outputs.export-settings }}
 
       # Upload Artifact
       - uses: actions/upload-artifact@v1
@@ -42,18 +48,18 @@ jobs:
           name: ${{ matrix.platform }}
           path: ${{ steps.export.outputs.artifact-path }}
 
-  xcode_build:
-    name: XCode Build
-    runs-on: macOS-latest
-    needs: export_publish
-    steps:
-      - name: Get Exported Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: iOS
-      - name: Export Result
-        shell: bash
-        run: |
-          pwd && ls -l &&
-          xcodebuild clean test -project ${GAME_NAME}.xcodeproj -scheme ${GAME_NAME} -destination "platform=iOS Simulator,OS=12.2,name=iPhone X" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO &&
-          pwd && ls -l
+#   xcode_build:
+#     name: XCode Build
+#     runs-on: macOS-latest
+#     needs: export_publish
+#     steps:
+#       - name: Get Exported Artifacts
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: iOS
+#       - name: Export Result
+#         shell: bash
+#         run: |
+#           pwd && ls -l &&
+#           xcodebuild clean test -project ${GAME_NAME}.xcodeproj -scheme ${GAME_NAME} -destination "platform=iOS Simulator,OS=12.2,name=iPhone X" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO &&
+#           pwd && ls -l
