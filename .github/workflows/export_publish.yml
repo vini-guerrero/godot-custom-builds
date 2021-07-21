@@ -14,7 +14,7 @@ jobs:
   export:
     runs-on: ubuntu-latest
     outputs:
-      file: ${{ steps.export.outputs.file }}
+      file: ${{ steps.artifact.outputs.file }}
     strategy:
       matrix:
         platform: [Linux]
@@ -36,7 +36,7 @@ jobs:
           path: ${{ steps.export.outputs.artifact-path }}
 
       # Set Matrix Output
-      - id: export
+      - id: artifact
         run: echo "::set-output name=file::${{ steps.export.outputs.artifact-path }}"
 
   publish:
