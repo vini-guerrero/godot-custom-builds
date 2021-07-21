@@ -1,0 +1,43 @@
+name: Export Publish
+on: [push]
+
+env:
+  GODOT_VERSION: 3.3.2
+  GAME_NAME: test_game
+  IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
+  PROJECT_PATH: game # Local To Repository Folder With Game
+  ITCH_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+  ITCH_GAME: godot-exporter
+  ITCH_USER: andrea-miele
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [Linux]
+    steps:
+      # Checkout Current Repository
+      - uses: actions/checkout@v2
+
+      # Export Godot Project
+      - name: Export ${{ matrix.platform }} Version
+        id: export
+        uses: vini-guerrero/godot-exporter/actions/export@dev
+        with:
+          platform: ${{ matrix.platform }}
+
+      # Upload Artifact
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ steps.export.outputs.artifact-path }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: export
+    steps:
+      - name: Export Result
+        shell: bash
+        run: |
+          pwd && ls -l
