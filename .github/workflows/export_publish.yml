@@ -34,7 +34,7 @@ jobs:
         with:
           platform: "Itch"
           channel: ${{ matrix.platform }}
-          project_path: ${{ steps.export.outputs.artifact-path }}
+          project_path: ${{ steps.export.outputs.exported-project }}
 
       # Upload Artifact
       - uses: actions/upload-artifact@v1
