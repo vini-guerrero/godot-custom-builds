@@ -1,5 +1,5 @@
 name: Export Publish
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
@@ -49,6 +49,8 @@ jobs:
     steps:
       - name: Get Exported Artifacts
         uses: actions/download-artifact@v2
+        with:
+          name: iOS
       - name: Export Result
         shell: bash
         run: pwd && ls -l
