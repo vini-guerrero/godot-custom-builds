@@ -29,24 +29,24 @@ jobs:
           platform: ${{ matrix.platform }}
 
       # Publish Platforms
-      - name: Publish Platforms
-        uses: vini-guerrero/godot-exporter/actions/publish@dev
-        with:
-          platform: "Itch"
-          channel: ${{ matrix.platform }}
-          project_path: ${{ steps.export.outputs.artifact-path }}
+#       - name: Publish Platforms
+#         uses: vini-guerrero/godot-exporter/actions/publish@dev
+#         with:
+#           platform: "Itch"
+#           channel: ${{ matrix.platform }}
+#           project_path: ${{ steps.export.outputs.artifact-path }}
 
       # Upload Settings Used
-      - uses: actions/upload-artifact@v1
-        with:
-          name: ${{ matrix.platform }}_settings
-          path: ${{ steps.export.outputs.export-settings }}
+#       - uses: actions/upload-artifact@v1
+#         with:
+#           name: ${{ matrix.platform }}_settings
+#           path: ${{ steps.export.outputs.export-settings }}
 
       # Upload Artifact
-      - uses: actions/upload-artifact@v1
-        with:
-          name: ${{ matrix.platform }}
-          path: ${{ steps.export.outputs.artifact-path }}
+#       - uses: actions/upload-artifact@v1
+#         with:
+#           name: ${{ matrix.platform }}
+#           path: ${{ steps.export.outputs.artifact-path }}
 
 #   xcode_build:
 #     name: XCode Build
