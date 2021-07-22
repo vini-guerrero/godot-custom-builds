@@ -39,7 +39,7 @@ jobs:
       # Upload Settings Used
       - uses: actions/upload-artifact@v1
         with:
-          name: ${{ matrix.platform }}
+          name: ${{ matrix.platform }}_settings
           path: ${{ steps.export.outputs.export-settings }}
 
       # Upload Artifact
