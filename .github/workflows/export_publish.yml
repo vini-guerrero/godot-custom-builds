@@ -17,8 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # platform: [iOS, Android, Linux, MacOS, Windows, HTML5]
-        platform: [Android]
+        platform: [iOS, Android, Linux, MacOS, Windows, HTML5]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
@@ -30,7 +29,7 @@ jobs:
         with:
           platform: ${{ matrix.platform }}
 
-      # Publish Platforms
+# Publish Platforms
 #       - name: Publish Platforms
 #         uses: vini-guerrero/godot-exporter/actions/publish@dev
 #         with:
@@ -38,13 +37,13 @@ jobs:
 #           channel: ${{ matrix.platform }}
 #           project_path: ${{ steps.export.outputs.artifact-path }}
 
-      # Upload Settings Used
+# Upload Settings Used
 #       - uses: actions/upload-artifact@v1
 #         with:
 #           name: ${{ matrix.platform }}_settings
 #           path: ${{ steps.export.outputs.export-settings }}
 
-      # Upload Artifact
+# Upload Artifact
 #       - uses: actions/upload-artifact@v1
 #         with:
 #           name: ${{ matrix.platform }}
