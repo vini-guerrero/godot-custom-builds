@@ -51,4 +51,4 @@ jobs:
         with:
           platform: "Itch"
           channel: ${{ matrix.platform }}
-          project_path: ${{ steps.export.outputs.export-file }}
+          project_path: ${{ steps.export.outputs.artifact-path }}
