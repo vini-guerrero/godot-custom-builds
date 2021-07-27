@@ -1,9 +1,10 @@
 name: Export Publish
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
-  GAME_NAME: test_game
+  PROJECT_NAME: test_game
+  EXPORT_MODE: release
   IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
   PROJECT_PATH: game # Local To Repository Folder With Game
   ITCH_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -16,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [iOS, Android, Linux, MacOS, Windows, HTML5]
+        # platform: [iOS, Android, Linux, MacOS, Windows, HTML5]
+        platform: [Android]
     steps:
       # Checkout Current Repository
       - uses: actions/checkout@v2
