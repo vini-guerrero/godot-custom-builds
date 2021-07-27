@@ -43,4 +43,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}_settings
-          path: ${EXPORT_PATH}
+          path: ${{env.EXPORT_PATH}}
