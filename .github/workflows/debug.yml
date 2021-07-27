@@ -1,5 +1,5 @@
 name: Export Debug
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
@@ -32,6 +32,12 @@ jobs:
         uses: vini-guerrero/godot-exporter/actions/export@dev
         with:
           platform: ${{ matrix.platform }}
+      
+      # Upload Artifact
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ steps.export.outputs.artifact-path }}
 
       # Upload Settings Used
       - uses: actions/upload-artifact@v1
