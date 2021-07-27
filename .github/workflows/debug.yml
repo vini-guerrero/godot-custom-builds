@@ -47,7 +47,7 @@ jobs:
       
       # Publish Platforms
       - name: Publish Platforms
-        uses: vini-guerrero/godot-exporter/actions/publish@master
+        uses: vini-guerrero/godot-exporter/actions/publish@dev
         with:
           platform: "Itch"
           channel: ${{ matrix.platform }}
