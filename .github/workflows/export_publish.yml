@@ -4,9 +4,12 @@ on: [workflow_dispatch]
 env:
   GODOT_VERSION: 3.3.2
   PROJECT_NAME: test_game
-  EXPORT_MODE: release
-  IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
   PROJECT_PATH: game # Local To Repository Folder With Game
+  EXPORT_MODE: release
+  K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
+  K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
+  K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
+  IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
   ITCH_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
   ITCH_GAME: godot-exporter
   ITCH_USER: andrea-miele
@@ -29,25 +32,25 @@ jobs:
         with:
           platform: ${{ matrix.platform }}
 
-# Publish Platforms
-#       - name: Publish Platforms
-#         uses: vini-guerrero/godot-exporter/actions/publish@dev
-#         with:
-#           platform: "Itch"
-#           channel: ${{ matrix.platform }}
-#           project_path: ${{ steps.export.outputs.artifact-path }}
+      # Publish Platforms
+      - name: Publish Platforms
+        uses: vini-guerrero/godot-exporter/actions/publish@dev
+        with:
+          platform: "Itch"
+          channel: ${{ matrix.platform }}
+          project_path: ${{ steps.export.outputs.artifact-path }}
 
-# Upload Settings Used
-#       - uses: actions/upload-artifact@v1
-#         with:
-#           name: ${{ matrix.platform }}_settings
-#           path: ${{ steps.export.outputs.export-settings }}
+     # Upload Settings Used
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}_settings
+          path: ${{ steps.export.outputs.export-settings }}
 
-# Upload Artifact
-#       - uses: actions/upload-artifact@v1
-#         with:
-#           name: ${{ matrix.platform }}
-#           path: ${{ steps.export.outputs.artifact-path }}
+      # Upload Artifact
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ steps.export.outputs.artifact-path }}
 
 #   xcode_build:
 #     name: XCode Build
