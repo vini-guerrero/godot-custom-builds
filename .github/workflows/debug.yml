@@ -15,7 +15,7 @@ env:
   ITCH_USER: andrea-miele
 
 jobs:
-  export_publish:
+  export:
     name: Export
     runs-on: ubuntu-latest
     strategy:
