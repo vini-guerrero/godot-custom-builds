@@ -44,3 +44,11 @@ jobs:
         with:
           name: ${{ matrix.platform }}_settings
           path: ${{ steps.export.outputs.export-settings }}
+      
+      # Publish Platforms
+      - name: Publish Platforms
+        uses: vini-guerrero/godot-exporter/actions/publish@master
+        with:
+          platform: "Itch"
+          channel: ${{ matrix.platform }}
+          project_path: ${{ steps.export.outputs.export-file }}
