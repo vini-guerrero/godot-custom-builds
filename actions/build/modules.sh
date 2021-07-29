@@ -9,7 +9,7 @@ sudo apt-get install -y --no-install-recommends curl git python python3-pip pyth
 sudo apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm &&
 sudo pip3 install scons &&
 sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version &&
-sudo wget https://github.com/godotengine/godot/archive/refs/heads/${{ inputs.godot_branch }}.zip &&
+sudo wget https://github.com/godotengine/godot/archive/refs/heads/${GODOT_VERSION}.zip &&
 sudo unzip ${GODOT_VERSION}.zip && sudo mv godot-${GODOT_VERSION}/* ${GITHUB_WORKSPACE}/engine
 
 
