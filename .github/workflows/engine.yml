@@ -17,8 +17,9 @@ jobs:
       - uses: vini-guerrero/godot-custom-builds/actions/build@main
         with:
           godot_version: ${{ env.GODOT_BRANCH }}
+          custom_modules: ${{ env.CUSTOM_MODULES }}
 
-      - uses: actions/upload-artifact@v1
-        with:
-          name: ${{ matrix.platform }}
-          path: ${{ steps.build.outputs.artifact-path }}
+      # - uses: actions/upload-artifact@v1
+      #   with:
+      #     name: ${{ matrix.platform }}
+      #     path: ${{ steps.build.outputs.artifact-path }}
