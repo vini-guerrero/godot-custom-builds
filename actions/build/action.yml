@@ -13,15 +13,7 @@ runs:
   using: "composite"
   steps:
     - id: custom-modules
-      run: |
-        if [ "${CUSTOM_MODULES}" != "" ]; then
-          IFS="|" read -a GODOT_CUSTOM_MODULES <<< ${CUSTOM_MODULES}
-          echo -e "✔ Received ${#GODOT_CUSTOM_MODULES[@]} Custom Modules.\n${GODOT_CUSTOM_MODULES[@]}"
-        fi
-        for m in "${GODOT_CUSTOM_MODULES[@]}"; do
-          sudo wget -c "$m" -O temp.zip && sudo unzip temp.zip && sudo rm temp.zip
-        done
-        sudo ls -l
+      run: chmod +x ${{ github.action_path }}/modules.sh && ${{ github.action_path }}/modules.sh
       shell: bash
 
     # - id: prepare-environment
