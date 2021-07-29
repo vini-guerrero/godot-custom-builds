@@ -20,7 +20,7 @@ runs:
       run: |
         if [ ${{ inputs.custom_modules }} != ""]; then
           IFS="|" read -a GODOT_CUSTOM_MODULES <<< ${{ inputs.custom_modules }}
-          echo "✔ Custom Modules: ${GODOT_CUSTOM_MODULES[@]} - Total ${#GODOT_CUSTOM_MODULES[@]}."
+          echo -e "✔ Custom Modules: ${GODOT_CUSTOM_MODULES[@]} - Total ${#GODOT_CUSTOM_MODULES[@]}."
         fi
       shell: bash
 
