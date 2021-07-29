@@ -2,6 +2,7 @@
 set -e
 
 echo -e "✔ Modules Script Triggered Successfully."
+sudo mkdir -p -v engine
 
 if [ "${CUSTOM_MODULES}" != "" ]; then
     IFS="|" read -a GODOT_CUSTOM_MODULES <<< ${CUSTOM_MODULES}
@@ -9,7 +10,8 @@ if [ "${CUSTOM_MODULES}" != "" ]; then
 fi
 MODULE_INDEX=0
 for m in "${GODOT_CUSTOM_MODULES[@]}"; do
-    sudo wget -qc "$m" -O module_${MODULE_INDEX}.zip && sudo unzip -Z1 module_${MODULE_INDEX}.zip
+    # sudo wget -qc "$m" -O module_${MODULE_INDEX}.zip && sudo unzip -Z1 module_${MODULE_INDEX}.zip
+    sudo wget -qc "$m" -O temp.zip && sudo unzip -Z1 temp.zip
     ((MODULE_INDEX++))
     # FILE=$(eval "sudo wget -qc "$m" -O temp.zip && sudo unzip -Z1 temp.zip")
     # echo -e ${FILE}
