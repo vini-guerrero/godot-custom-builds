@@ -6,6 +6,7 @@ env:
   GODOT_BRANCH: 3.x
   SCONS_CACHE_LIMIT: 4096
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
+  CUSTOM_MODULES: "https://github.com/Zylann/godot_voxel/archive/refs/heads/master.zip"
 
 jobs:
   build:
@@ -16,3 +17,8 @@ jobs:
       - uses: vini-guerrero/godot-custom-builds/actions/build@main
         with:
           godot_version: ${{ env.GODOT_BRANCH }}
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ steps.build.outputs.artifact-path }}

@@ -5,10 +5,14 @@ inputs:
     description: "Godot Version"
     required: true
     default: "3.x"
+outputs:
+  artifact-path:
+    description: "Exported Artifact"
+    value: ${{ steps.exported-artifact.outputs.artifact-path }}
 runs:
   using: "composite"
   steps:
-    - name: Prepare Environment
+    - id: prepare-environment
       run: |
         sudo apt-get update &&
         sudo apt-get install -y --no-install-recommends curl git python python3-pip python-openssl wget zip unzip mingw-w64 &&
@@ -20,12 +24,12 @@ runs:
         pwd && ls
       shell: bash
 
-    # - name: Compile Engine
-    #   run: |
-    #     sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
-    #     sudo scons -j2 verbose=yes warnings=all werror=yes platform=windows tools=yes tests=no target=release_debug production=yes
-    #   shell: bash
+    - id: compile-engine
+      run: |
+        sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
+      shell: bash
 
-    - name: Compile Results
-      run: ls -l bin/
+    - id: exported-artifact
+      run: |
+        echo "::set-output name=artifact-path::$(echo bin/godot.x11.opt.tools.64)"
       shell: bash
