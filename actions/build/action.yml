@@ -13,7 +13,9 @@ runs:
   using: "composite"
   steps:
     - id: custom-modules
-      run: sudo ls -l
+      run: |
+        echo -e ${MODULE_1} ${MODULE_2}
+        sudo ls -l
       shell: bash
 
     # - id: prepare-environment
