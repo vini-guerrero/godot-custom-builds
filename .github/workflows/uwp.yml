@@ -12,7 +12,6 @@ jobs:
     name: Build UWP Engine
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Checkout Godot Engine
         uses: actions/checkout@v2
         with:
@@ -20,17 +19,51 @@ jobs:
           ref: ${{env.GODOT_BRANCH}}
       - name: Prepare Build
         run: |
-          wget -c https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/detect.py -O platform/uwp/detect.py
-          wget -c https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/context_egl_uwp.cpp -O platform/uwp/context_egl_uwp.cpp
-          ls -l platform/uwp
+          wget -qc https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/detect.py -O platform/uwp/detect.py
+          wget -qc https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/context_egl_uwp.cpp -O platform/uwp/context_egl_uwp.cpp
 
-      # - name: Load .scons_cache directory
-      #   id: Editor-Cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ${{github.workspace}}/.scons_cache/
-      #     key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
-      #     restore-keys: |
-      #       ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
-      #       ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
-      #       ${{github.job}}-${{env.GODOT_BRANCH}}
+      - name: Make apt sources.list use the default Ubuntu repositories
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/*
+          sudo cp -f misc/ci/sources.list /etc/apt/sources.list
+          sudo apt-get update
+
+      - name: Configure dependencies
+        run: |
+          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+            libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
+
+      - name: Load .scons_cache directory
+        id: linux-editor-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{github.workspace}}/.scons_cache/
+          key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+          architecture: "x64"
+
+      - name: Configuring Python packages
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install scons
+          python --version
+          scons --version
+
+      - name: Compilation
+        env:
+          SCONS_CACHE: ${{github.workspace}}/.scons_cache/
+        run: |
+          scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Godot-Linux-UWP
+          path: bin/godot.x11.opt.tools.64
