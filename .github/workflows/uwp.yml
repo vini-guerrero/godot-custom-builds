@@ -1,0 +1,31 @@
+name: UWP Build
+# on: [push]
+on: [workflow_dispatch]
+
+env:
+  GODOT_BRANCH: 3.3
+  SCONS_CACHE_LIMIT: 4096
+  SCONS_CACHE: ${{github.workspace}}/.scons_cache/
+
+jobs:
+  build:
+    name: Build UWP Engine
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v2
+      - name: Checkout Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: ${{env.GODOT_BRANCH}}
+
+      # - name: Load .scons_cache directory
+      #   id: Editor-Cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ${{github.workspace}}/.scons_cache/
+      #     key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+      #     restore-keys: |
+      #       ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+      #       ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
+      #       ${{github.job}}-${{env.GODOT_BRANCH}}
