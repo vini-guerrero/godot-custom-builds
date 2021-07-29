@@ -19,7 +19,7 @@ runs:
           echo -e "✔ Received ${#GODOT_CUSTOM_MODULES[@]} Custom Modules.\n${GODOT_CUSTOM_MODULES[@]}"
         fi
         for m in "${GODOT_CUSTOM_MODULES[@]}"; do
-          sudo wget "$m"  
+          sudo wget --content-disposition "$m"  
         done
         sudo ls -l
       shell: bash
