@@ -26,4 +26,5 @@ for m in "${GODOT_CUSTOM_MODULES[@]}"; do
     # echo -e ${FILE}
 done
 
+ls -l
 ls -l ${GITHUB_WORKSPACE}/engine
