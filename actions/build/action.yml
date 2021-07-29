@@ -5,10 +5,6 @@ inputs:
     description: "Godot Version"
     required: true
     default: "3.x"
-  custom_module:
-    description: "Custom Module"
-    required: true
-    default: ""
 runs:
   using: "composite"
   steps:
@@ -24,18 +20,11 @@ runs:
         pwd && ls
       shell: bash
 
-    - name: Custom Module
-      run: |
-        if [ ${{ inputs.custom_module }} != ""]; then
-          sudo git clone ${{ inputs.custom_module }} /godot-${{ inputs.godot_branch }}/modules
-        fi
-      shell: bash
-
-    - name: Compile Engine
-      run: |
-        sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
-        sudo scons -j2 verbose=yes warnings=all werror=yes platform=windows tools=yes tests=no target=release_debug production=yes
-      shell: bash
+    # - name: Compile Engine
+    #   run: |
+    #     sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
+    #     sudo scons -j2 verbose=yes warnings=all werror=yes platform=windows tools=yes tests=no target=release_debug production=yes
+    #   shell: bash
 
     - name: Compile Results
       run: ls -l bin/
