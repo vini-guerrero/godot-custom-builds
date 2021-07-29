@@ -8,11 +8,11 @@ if [ "${CUSTOM_MODULES}" != "" ]; then
     IFS="|" read -a GODOT_CUSTOM_MODULES <<< ${CUSTOM_MODULES}
     echo -e "✔ Received ${#GODOT_CUSTOM_MODULES[@]} Custom Modules.\n${GODOT_CUSTOM_MODULES[@]}"
 fi
-MODULE_INDEX=0
+# MODULE_INDEX=0
 for m in "${GODOT_CUSTOM_MODULES[@]}"; do
     # sudo wget -qc "$m" -O module_${MODULE_INDEX}.zip && sudo unzip -Z1 module_${MODULE_INDEX}.zip
-    sudo wget -qc "$m" -O temp.zip && sudo unzip -Z1 temp.zip
-    ((MODULE_INDEX++))
+    sudo wget -qc "$m" -O temp.zip && sudo unzip -Z1 temp.zip -d engine
+    # ((MODULE_INDEX++))
     # FILE=$(eval "sudo wget -qc "$m" -O temp.zip && sudo unzip -Z1 temp.zip")
     # echo -e ${FILE}
 done
