@@ -11,9 +11,9 @@ fi
 # MODULE_INDEX=0
 for m in "${GODOT_CUSTOM_MODULES[@]}"; do
     # sudo wget -qc "$m" -O module_${MODULE_INDEX}.zip && sudo unzip -Z1 module_${MODULE_INDEX}.zip
-    sudo wget -qc "$m" -O temp.zip && sudo unzip -Z1 temp.zip && sudo rm temp.zip
+    sudo wget -qc "$m" -O temp.zip && sudo unzip -qq -Z1 temp.zip -D ${GITHUB_WORKSPACE}/engine && sudo rm temp.zip
     # ((MODULE_INDEX++))
     # FILE=$(eval "sudo wget -qc "$m" -O temp.zip && sudo unzip -Z1 temp.zip")
     # echo -e ${FILE}
 done
-sudo ls -l && ls -l engine
+sudo ls -l && ls -l ${GITHUB_WORKSPACE}/engine
