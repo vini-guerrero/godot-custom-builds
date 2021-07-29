@@ -6,8 +6,7 @@ env:
   GODOT_BRANCH: 3.3
   SCONS_CACHE_LIMIT: 4096
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
-  MODULE_1: "https://github.com/Zylann/godot_voxel/archive/refs/heads/master.zip"
-  MODULE_2: "https://github.com/Gramps/GodotSteam/archive/refs/heads/master.zip"
+  CUSTOM_MODULES: "https://github.com/Zylann/godot_voxel/archive/refs/heads/master.zip|https://github.com/Gramps/GodotSteam/archive/refs/heads/master.zip"
 
 jobs:
   build:
