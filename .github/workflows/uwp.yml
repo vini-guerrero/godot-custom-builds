@@ -12,7 +12,7 @@ jobs:
     name: Build UWP Engine
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Checkout Godot Engine
         uses: actions/checkout@v2
         with:
@@ -20,6 +20,9 @@ jobs:
           ref: ${{env.GODOT_BRANCH}}
       - name: Prepare Build
         run: |
+          cd platform/uwp
+          wget https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/detect.py
+          wget https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/context_egl_uwp.cpp
           ls -l
 
       # - name: Load .scons_cache directory
