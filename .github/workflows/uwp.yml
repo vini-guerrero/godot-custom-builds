@@ -3,7 +3,7 @@ name: UWP Build
 on: [workflow_dispatch]
 
 env:
-  GODOT_BRANCH: uwp-google-angle-3.2
+  GODOT_BRANCH: 3.2
   SCONS_CACHE_LIMIT: 4096
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
 
@@ -15,17 +15,13 @@ jobs:
       - name: Checkout Godot Engine
         uses: actions/checkout@v2
         with:
-          repository: vini-guerrero/godot-1
+          repository: godotengine/godot
           ref: ${{env.GODOT_BRANCH}}
 
-      # uses: actions/checkout@v2
-      # with:
-      #   repository: godotengine/godot
-      #   ref: ${{env.GODOT_BRANCH}}
-      # - name: Prepare Build
-      #   run: |
-      #     wget -qc https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/detect.py -O platform/uwp/detect.py
-      #     wget -qc https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/context_egl_uwp.cpp -O platform/uwp/context_egl_uwp.cpp
+      - name: Prepare Build
+        run: |
+          wget -qc https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/detect.py -O platform/uwp/detect.py
+          wget -qc https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/context_egl_uwp.cpp -O platform/uwp/context_egl_uwp.cpp
 
       - name: Make apt sources.list use the default Ubuntu repositories
         run: |
