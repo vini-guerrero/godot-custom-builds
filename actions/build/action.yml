@@ -15,7 +15,7 @@ runs:
     - id: build-engine
       run: chmod +x ${{ github.action_path }}/build.sh && ${{ github.action_path }}/build.sh
       shell: bash
-    # - id: exported-artifact
-    #   run: |
-    #     echo "::set-output name=artifact-path::$(echo bin/godot.x11.opt.tools.64)"
-    #   shell: bash
+    - id: exported-artifact
+      run: |
+        echo "::set-output name=artifact-path::$(echo ${GITHUB_WORKSPACE}/engine/bin/godot.x11.opt.tools.64)"
+      shell: bash

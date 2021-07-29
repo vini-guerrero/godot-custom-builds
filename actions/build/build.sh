@@ -26,5 +26,5 @@ for m in "${GODOT_CUSTOM_MODULES[@]}"; do
     # echo -e ${FILE}
 done
 
-# sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
-ls -l ${GITHUB_WORKSPACE}/engine
+cd ${GITHUB_WORKSPACE}/engine
+sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
