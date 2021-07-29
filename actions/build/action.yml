@@ -18,6 +18,9 @@ runs:
           IFS="|" read -a GODOT_CUSTOM_MODULES <<< ${CUSTOM_MODULES}
           echo -e "✔ Received ${#GODOT_CUSTOM_MODULES[@]} Custom Modules.\n${GODOT_CUSTOM_MODULES[@]}"
         fi
+        for m in "${GODOT_CUSTOM_MODULES[@]}"; do
+          sudo wget -O "$m" "$m"  
+        done
         sudo ls -l
       shell: bash
 
