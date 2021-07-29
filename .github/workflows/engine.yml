@@ -3,21 +3,26 @@ name: Engine
 on: [workflow_dispatch]
 
 env:
-  GODOT_BRANCH: 3.x
+  GODOT_BRANCH: 3.3
   SCONS_CACHE_LIMIT: 4096
   SCONS_CACHE: ${{github.workspace}}/.scons_cache/
-  CUSTOM_MODULES: "https://github.com/Zylann/godot_voxel/archive/refs/heads/master.zip, https://github.com/Gramps/GodotSteam/archive/refs/heads/master.zip"
 
 jobs:
   build:
     name: Build Engine
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        modules: [Zylann/godot_voxel, Gramps/GodotSteam]
     steps:
       - uses: actions/checkout@v2
-      - uses: vini-guerrero/godot-custom-builds/actions/build@main
+      - uses: actions/checkout@v2
         with:
-          godot_branch: ${{ env.GODOT_BRANCH }}
-          custom_modules: ${{ env.CUSTOM_MODULES }}
+          repository: ${{ matrix.modules }}
+
+      # - uses: vini-guerrero/godot-custom-builds/actions/build@main
+      #   with:
+      #     godot_branch: ${{ env.GODOT_BRANCH }}
 
       # - uses: actions/upload-artifact@v1
       #   with:
