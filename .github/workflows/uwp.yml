@@ -18,6 +18,9 @@ jobs:
         with:
           repository: godotengine/godot
           ref: ${{env.GODOT_BRANCH}}
+      - name: Prepare Build
+        run: |
+          ls -l
 
       # - name: Load .scons_cache directory
       #   id: Editor-Cache
