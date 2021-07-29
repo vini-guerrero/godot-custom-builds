@@ -16,7 +16,7 @@ runs:
       run: |
         if [ "${CUSTOM_MODULES}" != "" ]; then
           IFS="|" read -a GODOT_CUSTOM_MODULES <<< ${CUSTOM_MODULES}
-          echo -e "✔ Received Custom Modules: \n ${GODOT_CUSTOM_MODULES[@]} - Total ${#GODOT_CUSTOM_MODULES[@]}."
+          echo -e "✔ Received ${#GODOT_CUSTOM_MODULES[@]} Custom Modules.\n${GODOT_CUSTOM_MODULES[@]}"
         fi
         sudo ls -l
       shell: bash
