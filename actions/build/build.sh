@@ -5,12 +5,12 @@ echo -e "✔ Modules Script Triggered Successfully."
 sudo mkdir -p -v engine
 
 sudo apt-get update &&
-sudo apt-get install -y --no-install-recommends curl git python python3-pip python-openssl wget zip unzip mingw-w64 &&
-sudo apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm &&
+sudo apt-get install -y -qq --no-install-recommends curl git python python3-pip python-openssl wget zip unzip mingw-w64 &&
+sudo apt-get -y -qq install build-essential pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm &&
 sudo pip3 install scons &&
 sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version &&
-sudo wget https://github.com/godotengine/godot/archive/refs/heads/${GODOT_VERSION}.zip &&
-sudo unzip ${GODOT_VERSION}.zip && sudo mv godot-${GODOT_VERSION}/* ${GITHUB_WORKSPACE}/engine
+sudo wget -q https://github.com/godotengine/godot/archive/refs/heads/${GODOT_BRANCH}.zip &&
+sudo unzip -qq ${GODOT_BRANCH}.zip && sudo mv godot-${GODOT_BRANCH}/* ${GITHUB_WORKSPACE}/engine
 
 
 if [ "${CUSTOM_MODULES}" != "" ]; then
@@ -26,5 +26,6 @@ for m in "${GODOT_CUSTOM_MODULES[@]}"; do
     # echo -e ${FILE}
 done
 
+# sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
 ls -l
 ls -l ${GITHUB_WORKSPACE}/engine

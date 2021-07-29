@@ -12,15 +12,9 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - id: custom-modules
-      run: chmod +x ${{ github.action_path }}/modules.sh && ${{ github.action_path }}/modules.sh
+    - id: build-engine
+      run: chmod +x ${{ github.action_path }}/build.sh && ${{ github.action_path }}/build.sh
       shell: bash
-
-    # - id: compile-engine
-    #   run: |
-    #     sudo scons -j2 verbose=yes warnings=all werror=yes platform=linuxbsd tools=yes tests=no target=release_debug production=yes
-    #   shell: bash
-
     # - id: exported-artifact
     #   run: |
     #     echo "::set-output name=artifact-path::$(echo bin/godot.x11.opt.tools.64)"
