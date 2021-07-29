@@ -20,10 +20,9 @@ jobs:
           ref: ${{env.GODOT_BRANCH}}
       - name: Prepare Build
         run: |
-          cd platform/uwp
-          wget https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/detect.py
-          wget https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/context_egl_uwp.cpp
-          ls -l
+          wget -c https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/detect.py -O platform/uwp/detect.py
+          wget -c https://raw.githubusercontent.com/godotengine/godot/ebe2e22ad45d62da476663607ddda75dd1fff18a/platform/uwp/context_egl_uwp.cpp -O platform/uwp/context_egl_uwp.cpp
+          ls -l platform/uwp
 
       # - name: Load .scons_cache directory
       #   id: Editor-Cache
