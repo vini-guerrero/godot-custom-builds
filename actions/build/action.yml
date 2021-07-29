@@ -18,7 +18,10 @@ runs:
   steps:
     - id: custom-modules
       run: |
-        chmod +x ${{ github.action_path }}/modules.py && python ${{ github.action_path }}/modules.py ${{inputs.custom_modules}}
+        if [ "${{ inputs.custom_modules }}" != "" ]; then
+          IFS="," read -a GODOT_CUSTOM_MODULES <<< ${{ inputs.custom_modules }}
+          echo -e "✔ Received Custom Modules: \n ${GODOT_CUSTOM_MODULES[@]} - Total ${#GODOT_CUSTOM_MODULES[@]}."
+        fi
       shell: bash
 
     # - id: prepare-environment
