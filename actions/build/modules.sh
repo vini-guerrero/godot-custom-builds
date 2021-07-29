@@ -10,7 +10,7 @@ sudo apt-get -y install build-essential pkg-config libx11-dev libxcursor-dev lib
 sudo pip3 install scons &&
 sudo python -c "import sys; print(sys.version)" && sudo python --version && sudo scons --version &&
 sudo wget https://github.com/godotengine/godot/archive/refs/heads/${{ inputs.godot_branch }}.zip &&
-sudo unzip ${{ inputs.godot_branch }}.zip && sudo mv godot-${{ inputs.godot_branch }}/* ${GITHUB_WORKSPACE}/engine
+sudo unzip ${GODOT_VERSION}.zip && sudo mv godot-${GODOT_VERSION}/* ${GITHUB_WORKSPACE}/engine
 
 
 if [ "${CUSTOM_MODULES}" != "" ]; then

@@ -35,8 +35,6 @@ jobs:
       - name: Export ${{ matrix.platform }} Version
         id: export
         uses: vini-guerrero/godot-exporter/actions/export@dev
-        with:
-          platform: ${{ matrix.platform }}
 
       # Publish Platforms
       - name: Publish Platforms
