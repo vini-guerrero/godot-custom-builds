@@ -8,6 +8,7 @@ if [ "${CUSTOM_MODULES}" != "" ]; then
     echo -e "✔ Received ${#GODOT_CUSTOM_MODULES[@]} Custom Modules.\n${GODOT_CUSTOM_MODULES[@]}"
 fi
 for m in "${GODOT_CUSTOM_MODULES[@]}"; do
-    sudo wget -c "$m" -O temp.zip && sudo unzip temp.zip && sudo rm temp.zip
+    FILE=$(eval "sudo wget -c "$m" -O temp.zip && sudo unzip -Z1 temp.zip")
+    echo -e ${FILE}
 done
 sudo ls -l
