@@ -14,11 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Load .scons_cache directory
+        id: Editor-Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{github.workspace}}/.scons_cache/
+          key: ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BRANCH}}
+
       - uses: vini-guerrero/godot-custom-builds/actions/build@main
         with:
           godot_branch: ${{ env.GODOT_BRANCH }}
 
-      # - uses: actions/upload-artifact@v1
-      #   with:
-      #     name: ${{ matrix.platform }}
-      #     path: ${{ steps.build.outputs.artifact-path }}
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ steps.build.outputs.artifact-path }}
