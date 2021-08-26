@@ -1,0 +1,34 @@
+name: Export
+on: [workflow_dispatch]
+
+env:
+  GODOT_VERSION: 3.3.2
+  PROJECT_NAME: test_game
+  PROJECT_PATH: game # Local To Repository Folder With Game
+  EXPORT_MODE: release
+  K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
+  K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
+  K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
+  IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
+
+jobs:
+  export:
+    name: Export
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [Android]
+    steps:
+      # Checkout Current Repository
+      - uses: actions/checkout@v2
+
+      # Export Godot Project
+      - name: Export ${{ matrix.platform }} Version
+        id: export
+        uses: vini-guerrero/godot-exporter/actions/export@dev
+        with:
+          platform: ${{ matrix.platform }}
+
+      - name: Validate Game Version
+        shell: bash
+        run: echo ${{ steps.export.outputs.exported-game-version }}
