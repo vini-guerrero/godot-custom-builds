@@ -25,7 +25,7 @@ jobs:
       # Export Godot Project
       - name: Export ${{ matrix.platform }} Version
         id: export
-        uses: vini-guerrero/godot-exporter/actions/export@dev
+        uses: vini-guerrero/godot-exporter/actions/export@master
         with:
           platform: ${{ matrix.platform }}
 
