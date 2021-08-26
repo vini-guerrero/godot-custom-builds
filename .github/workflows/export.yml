@@ -9,7 +9,7 @@ env:
   K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
   K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
   K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
-  IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"\
+  IOS_ICON_PATH: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
   GAME_VERSION_TAG: game/version
 
 jobs:
